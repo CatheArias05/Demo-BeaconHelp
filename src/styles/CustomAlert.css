@@ -35,6 +35,10 @@
   border: 2px solid rgba(251, 191, 36, 0.3);
 }
 
+.custom-alert.confirm {
+  border: 2px solid rgba(59, 130, 246, 0.3);
+}
+
 .alert-content {
   padding: 24px;
 }
@@ -60,6 +64,11 @@
 .warning-icon {
   color: #fbbf24;
   filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
+}
+
+.confirm-icon {
+  color: #3b82f6;
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
 }
 
 .alert-title {
@@ -97,6 +106,49 @@
   color: #475569;
   line-height: 1.5;
   margin: 0;
+  white-space: pre-line;
+}
+
+/* Alert Actions */
+.alert-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.alert-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.alert-cancel-btn {
+  background: rgba(148, 163, 184, 0.1);
+  color: #64748b;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.alert-cancel-btn:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: #475569;
+}
+
+.alert-confirm-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.alert-confirm-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
 }
 
 .alert-progress-bar {

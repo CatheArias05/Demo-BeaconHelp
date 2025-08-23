@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, User, Mail, Phone, Lock, Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, User, Mail, Lock, Phone, ArrowLeft } from 'lucide-react'
+import CustomAlert from '../../components/CustomAlert'
+import Footer from '../../components/Footer'
+import BackgroundParticles from '../../components/BackgroundParticles'
 import '../../styles/Register.css'
 
 const Register = () => {
@@ -12,12 +15,29 @@ const Register = () => {
     phone: '',
     password: ''
   })
+  const [alert, setAlert] = useState({
+    isVisible: false,
+    type: 'success',
+    title: '',
+    message: ''
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Register data:', formData)
-    alert('Registro exitoso! Bienvenido a BeaconHelp')
-    navigate('/')
+    setAlert({
+      isVisible: true,
+      type: 'success',
+      title: '¡Registro Exitoso!',
+      message: 'Bienvenido a BeaconHelp. Tu cuenta ha sido creada exitosamente.'
+    })
+    setTimeout(() => {
+      navigate('/')
+    }, 2000)
+  }
+
+  const closeAlert = () => {
+    setAlert(prev => ({ ...prev, isVisible: false }))
   }
 
   const handleChange = (e) => {
@@ -27,25 +47,67 @@ const Register = () => {
     })
   }
 
-  return (
-    <div className="register-container">
-      <div className="register-card">
-        {/* Header */}
-        <div className="register-header">
-          <button className="back-btn" onClick={() => navigate('/')}>
-            <ArrowLeft className="back-icon" />
-          </button>
-          
-          <div className="register-logo">
-            <img src="/images/beacon-logo.png" alt="BeaconHelp Logo" className="register-logo-img" />
-            <h1 className="register-app-title">BeaconHelp</h1>
+  return ( 
+    <>
+     <BackgroundParticles />
+    <div className="register-container" style={{index:1}}>
+      {/* Fondo decorativo */}
+
+      <div className="register-content">
+        {/* Panel izquierdo - Información */}
+        <div className="register-left-panel">
+          <div className="brand-section">
+            <div className="logo-container">
+              <img src="/images/beacon-logo.png" alt="BeaconHelp" className="brand-logo" />
+              <div className="brand-text">Seguridad y comunidad, siempre contigo</div>
+            </div>
+
+            <div className="info-section">
+              <h2 className="main-title">Únete a BeaconHelp</h2>
+              <p className="main-description">
+                Crea tu cuenta y forma parte de nuestra comunidad de seguridad. 
+                Reporta incidentes, mantente informado y ayuda a crear un entorno más seguro para todos.
+              </p>
+
+              <div className="features-grid">
+                <div className="feature-item">
+                  <div className="feature-icon">🛡️</div>
+                  <div className="feature-content">
+                    <h3>Seguro</h3>
+                    <p>Datos protegidos</p>
+                  </div>
+                </div>
+
+                <div className="feature-item">
+                  <div className="feature-icon">⚡</div>
+                  <div className="feature-content">
+                    <h3>Rápido</h3>
+                    <p>Reportes instantáneos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h2 className="register-title">Crear Cuenta</h2>
-          <p className="register-subtitle">Únete a nuestra comunidad de seguridad</p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="register-form">
+        {/* Panel derecho - Formulario */}
+        <div className="register-right-panel">
+          <div className="form-container">
+            <button className="back-btn" onClick={() => navigate('/')}>
+              <ArrowLeft className="back-icon" />
+            </button>
+            
+            <div className="form-header">
+              <div className="mobile-logo">
+                <img src="/images/beacon-logo.png" alt="BeaconHelp" className="mobile-logo-img" />
+              </div>
+              <h1 className="form-title">Crear Cuenta</h1>
+              <p className="form-subtitle">
+                Ingrese sus datos para unirse a nuestra comunidad de seguridad
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="register-form">
           {/* Name Field */}
           <div className="form-group">
             <label className="form-label">Nombre Completo</label>
@@ -121,23 +183,36 @@ const Register = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <button type="submit" className="submit-btn">
-            Crear Cuenta
-          </button>
-        </form>
+              {/* Submit Button */}
+              <button type="submit" className="submit-btn">
+                Crear Cuenta
+              </button>
+            </form>
 
-        {/* Footer */}
-        <div className="register-footer">
-          <p className="footer-text">
-            ¿Ya tienes cuenta?{' '}
-            <button className="login-link" onClick={() => navigate('/')}>
-              Iniciar Sesión
-            </button>
-          </p>
+            {/* Footer del formulario */}
+            <div className="form-footer">
+              <p className="footer-text">
+                ¿Ya tienes cuenta?{' '}
+                <button className="login-link" onClick={() => navigate('/')}>
+                  Iniciar Sesión
+                </button>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+      
+      <CustomAlert
+        isVisible={alert.isVisible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={closeAlert}
+      />
+      
+      <Footer />
     </div>
+    </>
   )
 }
 

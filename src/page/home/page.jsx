@@ -4,7 +4,8 @@ import Sidebar from '../../components/Sidebar'
 import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
 import CustomAlert from '../../components/CustomAlert'
-import LegalModal from '../../components/LegalModal'
+import Footer from '../../components/Footer'
+import BackgroundParticles from '../../components/BackgroundParticles'
 import { Shield, AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin } from 'lucide-react'
 import '../../styles/Home.css'
 
@@ -21,10 +22,6 @@ const Home = () => {
     type: 'success',
     title: '',
     message: ''
-  })
-  const [legalModal, setLegalModal] = useState({
-    isOpen: false,
-    type: null // 'privacy' or 'terms'
   })
 
   const emergencyContacts = [
@@ -67,8 +64,46 @@ const Home = () => {
     })
   }
 
+  // Función para cerrar alertas
   const closeAlert = () => {
-    setAlert(prev => ({ ...prev, isVisible: false }))
+    setAlert({
+      isVisible: false,
+      type: 'success',
+      title: '',
+      message: ''
+    })
+  }
+
+  // Función para detectar si es dispositivo móvil
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  }
+
+  // Función para copiar número al portapapeles
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setAlert({
+        isVisible: true,
+        type: 'success',
+        title: '¡Copiado!',
+        message: `Número ${text} copiado al portapapeles`
+      })
+    } catch (err) {
+      // Fallback para navegadores que no soportan clipboard API
+      const textArea = document.createElement('textarea')
+      textArea.value = text
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      setAlert({
+        isVisible: true,
+        type: 'success',
+        title: '¡Copiado!',
+        message: `Número ${text} copiado al portapapeles`
+      })
+    }
   }
 
   const handlePanicButton = () => {
@@ -105,43 +140,68 @@ const Home = () => {
     }, 1500)
   }
 
+  // Función para manejar llamadas telefónicas
+  const handlePhoneCall = (contact) => {
+    if (isMobileDevice()) {
+      // En dispositivos móviles, mostrar confirmación antes de llamar
+      setAlert({
+        isVisible: true,
+        type: 'confirm',
+        title: 'Llamar a contacto',
+        message: `¿Deseas llamar a ${contact.name} al número ${contact.phone}?`,
+        confirmText: 'Llamar',
+        cancelText: 'Cancelar',
+        onConfirm: () => {
+          window.open(`tel:${contact.phone}`)
+          closeAlert()
+        },
+        onCancel: closeAlert
+      })
+    } else {
+      // En PC, ofrecer opciones
+      setAlert({
+        isVisible: true,
+        type: 'confirm',
+        title: 'Opciones de contacto',
+        message: `Contacto: ${contact.name}\nNúmero: ${contact.phone}\n\n¿Qué deseas hacer?`,
+        confirmText: 'Copiar número',
+        cancelText: 'Abrir teléfono',
+        onConfirm: () => {
+          copyToClipboard(contact.phone)
+        },
+        onCancel: () => {
+          try {
+            window.open(`tel:${contact.phone}`)
+            closeAlert()
+          } catch (error) {
+            setAlert({
+              isVisible: true,
+              type: 'warning',
+              title: 'No disponible',
+              message: 'No se pudo abrir la aplicación de teléfono. El número ha sido copiado al portapapeles.'
+            })
+            copyToClipboard(contact.phone)
+          }
+        }
+      })
+    }
+  }
+
   const handleContactCall = (phone) => {
-    showAlert(
-      'success',
-      'Llamando Contacto',
-      `Iniciando llamada a ${phone}. Tu contacto de emergencia será notificado.`
-    )
-    setTimeout(() => {
-      window.location.href = `tel:${phone}`
-    }, 2000)
+    const contact = { name: 'Contacto', phone: phone }
+    handlePhoneCall(contact)
   }
 
   const handleResourceCall = (phone) => {
-    showAlert(
-      'success',
-      'Línea de Apoyo',
-      `Conectando con ${phone}. Línea de apoyo disponible 24/7 para asistirte.`
-    )
-    setTimeout(() => {
-      window.location.href = `tel:${phone}`
-    }, 2000)
+    const contact = { name: 'Recurso', phone: phone }
+    handlePhoneCall(contact)
   }
 
-  const openLegalModal = (type) => {
-    setLegalModal({
-      isOpen: true,
-      type
-    })
-  }
 
-  const closeLegalModal = () => {
-    setLegalModal({
-      isOpen: false,
-      type: null
-    })
-  }
 
   return (
+    <>
+    <BackgroundParticles />
     <div className="home-container">
       {/* Background Animation */}
       <div className="background-animation">
@@ -294,47 +354,15 @@ const Home = () => {
         title={alert.title}
         message={alert.message}
         onClose={closeAlert}
+        onConfirm={alert.onConfirm}
+        onCancel={alert.onCancel}
+        confirmText={alert.confirmText}
+        cancelText={alert.cancelText}
       />
 
-      {/* Legal Modal */}
-      <LegalModal
-        isOpen={legalModal.isOpen}
-        type={legalModal.type}
-        onClose={closeLegalModal}
-      />
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-logo">
-            <img src="/images/beacon-logo.png" alt="BeaconHelp Logo" className="footer-logo-img" />
-            <span className="footer-logo-text">BeaconHelp</span>
-          </div>
-          <p className="footer-description">
-            Denuncia sin miedo, te acompañamos en cada paso hacia la seguridad ciudadana.
-          </p>
-          <div className="footer-links">
-            <span>© 2025 BeaconHelp</span>
-            <span>•</span>
-            <button 
-              onClick={() => openLegalModal('privacy')} 
-              className="footer-link"
-              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-            >
-              Privacidad
-            </button>
-            <span>•</span>
-            <button 
-              onClick={() => openLegalModal('terms')} 
-              className="footer-link"
-              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-            >
-              Términos
-            </button>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
+    </>
   )
 }
 

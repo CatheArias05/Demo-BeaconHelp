@@ -1,7 +1,11 @@
 .settings-container {
   display: flex;
   min-height: 100vh;
+<<<<<<< HEAD
   background: var(--bg-primary);  /* Cambiar de linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) */
+=======
+  background: transparent;
+>>>>>>> 528ff1174c9072a7dd75a19690f419a4b4b9657c
   position: relative;
   overflow: hidden;
 }
@@ -27,12 +31,14 @@
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: calc(100vh - 4rem);
   /* Removido: margin-left: 280px; y padding-left: 320px; */
 }
 
 .settings-content {
   flex: 1;
   overflow-y: auto;
+  margin-bottom: 2rem;
 }
 
 .settings-header {

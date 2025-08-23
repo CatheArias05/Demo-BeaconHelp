@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { X, AlertTriangle, FileText, Calendar, MapPin, Phone } from 'lucide-react'
+import CustomAlert from './CustomAlert'
 
 // Modal para Nuevo Reporte
 export function NewReportModal({ isOpen, onClose, onSubmit }) {
@@ -122,10 +123,71 @@ export function NewReportModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div className="form-actions">
-                <Button type="button" variant="outline" onClick={onClose}>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={onClose}
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    color: '#475569',
+                    borderRadius: '8px',
+                    padding: '10px 20px',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.2s ease',
+                    minWidth: '120px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    verticalAlign: 'top'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#f1f5f9';
+                    e.target.style.borderColor = '#cbd5e1';
+                    e.target.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#f8fafc';
+                    e.target.style.borderColor = '#e2e8f0';
+                    e.target.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+                  }}
+                >
                   Cancelar
                 </Button>
-                <Button type="submit" className="submit-btn">
+                <Button 
+                  type="submit" 
+                  className="submit-btn"
+                  style={{
+                    backgroundColor: '#3b82f6',
+                    border: '1px solid #3b82f6',
+                    color: 'white',
+                    borderRadius: '8px',
+                    padding: '10px 20px',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.2s ease',
+                    minWidth: '120px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    verticalAlign: 'top'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#2563eb';
+                    e.target.style.borderColor = '#2563eb';
+                    e.target.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#3b82f6';
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+                  }}
+                >
                   Crear Reporte
                 </Button>
               </div>
@@ -139,11 +201,20 @@ export function NewReportModal({ isOpen, onClose, onSubmit }) {
 
 // Modal para Ver Detalles
 export function DetailsModal({ isOpen, onClose, report, onDelete }) {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+
   const handleDelete = () => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este reporte? Esta acción no se puede deshacer.')) {
-      onDelete(report.id)
-      onClose()
-    }
+    setShowDeleteConfirm(true)
+  }
+
+  const confirmDelete = () => {
+    onDelete(report.id)
+    setShowDeleteConfirm(false)
+    onClose()
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteConfirm(false)
   }
 
   if (!isOpen || !report) return null
@@ -225,19 +296,87 @@ export function DetailsModal({ isOpen, onClose, report, onDelete }) {
             </div>
 
             <div className="modal-actions">
-              <Button 
-                onClick={handleDelete} 
-                className="delete-btn"
-                variant="destructive"
+              <button
+                onClick={handleDelete}
+                style={{
+                  backgroundColor: '#dc2626',
+                  border: '1px solid #dc2626',
+                  color: 'white',
+                  borderRadius: '8px',
+                  padding: '10px 20px',
+                  fontWeight: '500',
+                  fontSize: '14px',
+                  boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                  transition: '0.2s ease',
+                  minWidth: '140px',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  verticalAlign: 'top'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = '#b91c1c';
+                  e.target.style.borderColor = '#b91c1c';
+                  e.target.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = '#dc2626';
+                  e.target.style.borderColor = '#dc2626';
+                  e.target.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+                }}
               >
                 Eliminar Reporte
-              </Button>
-              <Button onClick={onClose} className="close-modal-btn">
+              </button>
+              <button
+                onClick={onClose}
+                style={{
+                  backgroundColor: '#f8fafc',
+                  border: '1px solid #e2e8f0',
+                  color: '#475569',
+                  borderRadius: '8px',
+                  padding: '10px 20px',
+                  fontWeight: '500',
+                  fontSize: '14px',
+                  boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                  transition: '0.2s ease',
+                  minWidth: '120px',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  verticalAlign: 'top'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = '#f1f5f9';
+                  e.target.style.borderColor = '#cbd5e1';
+                  e.target.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = '#f8fafc';
+                  e.target.style.borderColor = '#e2e8f0';
+                  e.target.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+                }}
+              >
                 Cerrar
-              </Button>
+              </button>
             </div>
           </CardContent>
         </Card>
+        
+        <CustomAlert
+          isVisible={showDeleteConfirm}
+          type="warning"
+          title="Confirmar Eliminación"
+          message="¿Estás seguro de que quieres eliminar este reporte? Esta acción no se puede deshacer."
+          onClose={cancelDelete}
+          showConfirmButton={true}
+          onConfirm={confirmDelete}
+          confirmText="Eliminar"
+          cancelText="Cancelar"
+        />
       </div>
     </div>
   )
@@ -343,10 +482,71 @@ export function EditModal({ isOpen, onClose, report, onUpdate }) {
               </div>
 
               <div className="form-actions">
-                <Button type="button" variant="outline" onClick={onClose}>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={onClose}
+                  style={{
+                     backgroundColor: '#f8fafc',
+                     border: '1px solid #e2e8f0',
+                     color: '#475569',
+                     borderRadius: '8px',
+                     padding: '10px 20px',
+                     fontWeight: '500',
+                     fontSize: '14px',
+                     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                     transition: 'all 0.2s ease',
+                     minWidth: '120px',
+                     height: '40px',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'center',
+                     verticalAlign: 'top'
+                   }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#f1f5f9';
+                    e.target.style.borderColor = '#cbd5e1';
+                    e.target.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#f8fafc';
+                    e.target.style.borderColor = '#e2e8f0';
+                    e.target.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+                  }}
+                >
                   Cancelar
                 </Button>
-                <Button type="submit" className="submit-btn">
+                <Button 
+                  type="submit" 
+                  className="submit-btn"
+                  style={{
+                    backgroundColor: '#3b82f6',
+                    border: '1px solid #3b82f6',
+                    color: 'white',
+                    borderRadius: '8px',
+                    padding: '10px 20px',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.2s ease',
+                    minWidth: '120px',
+                     height: '40px',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'center',
+                     verticalAlign: 'top'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#2563eb';
+                    e.target.style.borderColor = '#2563eb';
+                    e.target.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#3b82f6';
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+                  }}
+                >
                   Guardar Cambios
                 </Button>
               </div>

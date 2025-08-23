@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
+import CustomAlert from '../../components/CustomAlert';
+import Footer from '../../components/Footer';
+import BackgroundParticles from '../../components/BackgroundParticles';
 import '../../styles/Location.css';
 import InteractiveMap from '../../components/InteractiveMap';
 
@@ -24,6 +27,12 @@ const LocationPage = () => {
   const [watchId, setWatchId] = useState(null);
   const [locationAccuracy, setLocationAccuracy] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [alert, setAlert] = useState({
+    isVisible: false,
+    type: 'success',
+    title: '',
+    message: ''
+  });
 
   const emergencyLocations = [
     {
@@ -208,14 +217,117 @@ const LocationPage = () => {
         });
       } else {
         navigator.clipboard.writeText(locationText);
-        alert('Ubicación copiada al portapapeles');
+        setAlert({
+          isVisible: true,
+          type: 'success',
+          title: 'Ubicación Copiada',
+          message: 'La ubicación de emergencia ha sido copiada al portapapeles exitosamente.'
+        });
       }
+    }
+  };
+
+  const closeAlert = () => {
+    setAlert({
+      isVisible: false,
+      type: 'success',
+      title: '',
+      message: '',
+      confirmText: '',
+      cancelText: '',
+      onConfirm: null,
+      onCancel: null
+    });
+  };
+
+  // Función para detectar dispositivo móvil
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+  };
+
+  // Función para copiar al portapapeles
+  const copyToClipboard = async (text) => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback para navegadores que no soportan clipboard API
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      
+      setAlert({
+        isVisible: true,
+        type: 'success',
+        title: 'Número Copiado',
+        message: `El número ${text} ha sido copiado al portapapeles exitosamente.`
+      });
+    } catch (error) {
+      console.error('Error al copiar al portapapeles:', error);
+      setAlert({
+        isVisible: true,
+        type: 'error',
+        title: 'Error',
+        message: 'No se pudo copiar el número al portapapeles.'
+      });
+    }
+  };
+
+  // Función para manejar llamadas telefónicas
+  const handlePhoneCall = (contact) => {
+    const phone = typeof contact === 'string' ? contact : contact.phone;
+    
+    if (isMobileDevice()) {
+      setAlert({
+        isVisible: true,
+        type: 'confirm',
+        title: 'Llamada de Emergencia',
+        message: `¿Deseas llamar al número ${phone}?`,
+        confirmText: 'Llamar',
+        cancelText: 'Cancelar',
+        onConfirm: () => {
+          window.open(`tel:${phone}`, '_self');
+          closeAlert();
+        },
+        onCancel: closeAlert
+      });
+    } else {
+      setAlert({
+        isVisible: true,
+        type: 'confirm',
+        title: 'Opciones de contacto',
+        message: `Número: ${phone}\n\n¿Qué deseas hacer?`,
+        confirmText: 'Copiar número',
+        cancelText: 'Abrir teléfono',
+        onConfirm: () => {
+          copyToClipboard(phone);
+        },
+        onCancel: () => {
+          try {
+            window.open(`tel:${phone}`, '_blank');
+            closeAlert();
+          } catch (error) {
+            setAlert({
+              isVisible: true,
+              type: 'warning',
+              title: 'No disponible',
+              message: 'No se pudo abrir la aplicación de teléfono. El número ha sido copiado al portapapeles.'
+            });
+            copyToClipboard(phone);
+          }
+        }
+      });
     }
   };
 
   // Funciones para los botones de acción
   const handleCall = (phone) => {
-    window.open(`tel:${phone}`, '_self');
+    handlePhoneCall(phone);
   };
 
   const handleDirections = (coordinates) => {
@@ -508,7 +620,23 @@ const LocationPage = () => {
         </div>
       </div>
       
+      <BackgroundParticles />
+      
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
+      
+      <CustomAlert
+        isVisible={alert.isVisible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={closeAlert}
+        onConfirm={alert.onConfirm}
+        onCancel={alert.onCancel}
+        confirmText={alert.confirmText}
+        cancelText={alert.cancelText}
+      />
+      
+      <Footer />
     </div>
   );
 };

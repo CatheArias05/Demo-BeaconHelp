@@ -4,6 +4,9 @@ import { Phone, Heart, Shield, AlertTriangle } from 'lucide-react'
 import Sidebar from '../../components/Sidebar'
 import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
+import CustomAlert from '../../components/CustomAlert'
+import Footer from '../../components/Footer'
+import BackgroundParticles from '../../components/BackgroundParticles'
 import '../../styles/Resources.css'
 
 export default function ResourcesPage() {
@@ -11,7 +14,111 @@ export default function ResourcesPage() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [isAIWidgetOpen, setIsAIWidgetOpen] = useState(false)
+  const [alert, setAlert] = useState({ isVisible: false, type: '', title: '', message: '' })
   const navigate = useNavigate()
+
+  // Función para detectar dispositivo móvil
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+  };
+
+  // Función para copiar al portapapeles
+  const copyToClipboard = async (text) => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback para navegadores que no soportan clipboard API
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      
+      setAlert({
+        isVisible: true,
+        type: 'success',
+        title: 'Número Copiado',
+        message: `El número ${text} ha sido copiado al portapapeles exitosamente.`
+      });
+    } catch (error) {
+      console.error('Error al copiar al portapapeles:', error);
+      setAlert({
+        isVisible: true,
+        type: 'error',
+        title: 'Error',
+        message: 'No se pudo copiar el número al portapapeles.'
+      });
+    }
+  };
+
+  // Función para manejar llamadas telefónicas
+  const handlePhoneCall = (contact) => {
+    const phone = typeof contact === 'string' ? contact : contact.phone;
+    
+    if (isMobileDevice()) {
+      setAlert({
+        isVisible: true,
+        type: 'confirm',
+        title: 'Llamada de Emergencia',
+        message: `¿Deseas llamar al número ${phone}?`,
+        confirmText: 'Llamar',
+        cancelText: 'Cancelar',
+        onConfirm: () => {
+          window.open(`tel:${phone}`, '_self');
+          closeAlert();
+        },
+        onCancel: closeAlert
+      });
+    } else {
+      setAlert({
+        isVisible: true,
+        type: 'confirm',
+        title: 'Opciones de contacto',
+        message: `Número: ${phone}\n\n¿Qué deseas hacer?`,
+        confirmText: 'Copiar número',
+        cancelText: 'Abrir teléfono',
+        onConfirm: () => {
+          copyToClipboard(phone);
+        },
+        onCancel: () => {
+          try {
+            window.open(`tel:${phone}`, '_blank');
+            closeAlert();
+          } catch (error) {
+            setAlert({
+              isVisible: true,
+              type: 'warning',
+              title: 'No disponible',
+              message: 'No se pudo abrir la aplicación de teléfono. El número ha sido copiado al portapapeles.'
+            });
+            copyToClipboard(phone);
+          }
+        }
+      });
+    }
+  };
+
+  // Función para manejar llamadas con alertas
+  const handleCall = (phone, resourceType) => {
+    handlePhoneCall(phone);
+  };
+
+  const closeAlert = () => {
+    setAlert({
+      isVisible: false,
+      type: 'success',
+      title: '',
+      message: '',
+      confirmText: '',
+      cancelText: '',
+      onConfirm: null,
+      onCancel: null
+    });
+  };
 
   const emergencyResources = [
     {
@@ -161,7 +268,10 @@ export default function ResourcesPage() {
                   </div>
                   <p className="resources-emergency-description">{resource.description}</p>
                 </div>
-                <button className="resources-emergency-call-btn">
+                <button 
+                  className="resources-emergency-call-btn"
+                  onClick={() => handleCall(resource.phone, 'emergency')}
+                >
                   <Phone className="resources-call-icon" />
                   Llamar
                 </button>
@@ -193,7 +303,10 @@ export default function ResourcesPage() {
                   </div>
                   <p className="resources-support-description">{resource.description}</p>
                 </div>
-                <button className="resources-support-call-btn">
+                <button 
+                  className="resources-support-call-btn"
+                  onClick={() => handleCall(resource.phone, 'support')}
+                >
                   <Phone className="resources-call-icon" />
                   Llamar
                 </button>
@@ -225,7 +338,10 @@ export default function ResourcesPage() {
                   </div>
                   <p className="resources-legal-description">{resource.description}</p>
                 </div>
-                <button className="resources-legal-call-btn">
+                <button 
+                  className="resources-legal-call-btn"
+                  onClick={() => handleCall(resource.phone, 'legal')}
+                >
                   <Phone className="resources-call-icon" />
                   Llamar
                 </button>
@@ -235,8 +351,26 @@ export default function ResourcesPage() {
         </div>
       </div>
 
+      {/* Background Particles */}
+      <BackgroundParticles />
+      
       {/* Floating AI Widget */}
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
+      
+      {/* Custom Alert */}
+      <CustomAlert 
+        isVisible={alert.isVisible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={closeAlert}
+        onConfirm={alert.onConfirm}
+        onCancel={alert.onCancel}
+        confirmText={alert.confirmText}
+        cancelText={alert.cancelText}
+      />
+      
+      <Footer />
     </div>
   )
 }

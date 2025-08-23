@@ -5,6 +5,9 @@ import { useTheme } from '../../contexts/ThemeContext';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
+import CustomAlert from '../../components/CustomAlert';
+import Footer from '../../components/Footer';
+import BackgroundParticles from '../../components/BackgroundParticles';
 import '../../styles/Settings.css';
 
 const SettingsPage = () => {
@@ -49,6 +52,12 @@ const SettingsPage = () => {
   
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [alert, setAlert] = useState({
+    isVisible: false,
+    type: 'success',
+    title: '',
+    message: ''
+  });
 
   const handleSettingChange = (key, value) => {
     setSettings(prev => ({
@@ -67,7 +76,16 @@ const SettingsPage = () => {
     // Simular guardado
     await new Promise(resolve => setTimeout(resolve, 1000));
     setIsLoading(false);
-    alert('Configuración guardada exitosamente');
+    setAlert({
+      isVisible: true,
+      type: 'success',
+      title: 'Configuración Guardada',
+      message: 'Todos los cambios han sido guardados exitosamente.'
+    });
+  };
+
+  const closeAlert = () => {
+    setAlert(prev => ({ ...prev, isVisible: false }));
   };
 
   const tabs = [
@@ -529,7 +547,19 @@ const SettingsPage = () => {
         </div>
       </div>
       
+      <BackgroundParticles />
+      
       <FloatingAIWidget />
+      
+      <CustomAlert
+        isVisible={alert.isVisible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={closeAlert}
+      />
+      
+      <Footer />
     </div>
   );
 };
