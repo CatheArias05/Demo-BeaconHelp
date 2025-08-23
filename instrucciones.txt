@@ -1,0 +1,11 @@
+sin dañar nada, vamos a crear un background, igualito al que te voy a pasar de ejemplo
+con los mismos colores, animaciones, osea que sea igual, que tenga lo mismo
+
+este es el que quiero
+C:\Users\estef\Documents\Practica\Demo-BeaconHelp\DNAParticles.txt
+
+asi que modifica y agrega ese diseño en BackgroundParticles que esta en blanco
+C:\Users\estef\Documents\Practica\Demo-BeaconHelp\src\components\BackgroundParticles.jsx
+C:\Users\estef\Documents\Practica\Demo-BeaconHelp\src\styles\BackgroundParticles.css
+
+ese esta en tailwind, hay que pasarlo a css, pero que quede tal cual, igualitico

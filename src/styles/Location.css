@@ -1,6 +1,6 @@
 .location-container {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }

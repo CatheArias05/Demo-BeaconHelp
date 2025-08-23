@@ -8,6 +8,7 @@ import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
 import CustomAlert from '../../components/CustomAlert';
 import Footer from '../../components/Footer';
+import BackgroundParticles from '../../components/BackgroundParticles';
 import '../../styles/Location.css';
 import InteractiveMap from '../../components/InteractiveMap';
 
@@ -618,6 +619,8 @@ const LocationPage = () => {
           )}
         </div>
       </div>
+      
+      <BackgroundParticles />
       
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
       

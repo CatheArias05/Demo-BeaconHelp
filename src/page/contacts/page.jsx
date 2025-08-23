@@ -6,6 +6,7 @@ import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
 import CustomAlert from '../../components/CustomAlert'
 import Footer from '../../components/Footer'
+import BackgroundParticles from '../../components/BackgroundParticles'
 import '../../styles/Contacts.css'
 
 export default function ContactsPage() {
@@ -760,6 +761,9 @@ export default function ContactsPage() {
         confirmText={alert.confirmText}
         cancelText={alert.cancelText}
       />
+
+      {/* Background Particles */}
+      <BackgroundParticles />
 
       {/* Floating AI Widget */}
       <FloatingAIWidget isOpen={isAIOpen} setIsOpen={setIsAIOpen} />

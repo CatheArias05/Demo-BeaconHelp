@@ -6,6 +6,7 @@ import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
 import CustomAlert from '../../components/CustomAlert'
 import Footer from '../../components/Footer'
+import BackgroundParticles from '../../components/BackgroundParticles'
 import '../../styles/Resources.css'
 
 export default function ResourcesPage() {
@@ -350,6 +351,9 @@ export default function ResourcesPage() {
         </div>
       </div>
 
+      {/* Background Particles */}
+      <BackgroundParticles />
+      
       {/* Floating AI Widget */}
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
       

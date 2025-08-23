@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
 import CustomAlert from '../../components/CustomAlert';
 import Footer from '../../components/Footer';
+import BackgroundParticles from '../../components/BackgroundParticles';
 import '../../styles/Settings.css';
 
 const SettingsPage = () => {
@@ -538,6 +539,8 @@ const SettingsPage = () => {
           </div>
         </div>
       </div>
+      
+      <BackgroundParticles />
       
       <FloatingAIWidget />
       

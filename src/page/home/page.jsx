@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
 import CustomAlert from '../../components/CustomAlert'
 import Footer from '../../components/Footer'
+import BackgroundParticles from '../../components/BackgroundParticles'
 import { Shield, AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin } from 'lucide-react'
 import '../../styles/Home.css'
 
@@ -199,6 +200,8 @@ const Home = () => {
 
 
   return (
+    <>
+    <BackgroundParticles />
     <div className="home-container">
       {/* Background Animation */}
       <div className="background-animation">
@@ -359,6 +362,7 @@ const Home = () => {
 
       <Footer />
     </div>
+    </>
   )
 }
 
