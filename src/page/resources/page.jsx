@@ -4,6 +4,7 @@ import { Phone, Heart, Shield, AlertTriangle } from 'lucide-react'
 import Sidebar from '../../components/Sidebar'
 import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
+import Footer from '../../components/Footer'
 import '../../styles/Resources.css'
 
 export default function ResourcesPage() {
@@ -237,6 +238,8 @@ export default function ResourcesPage() {
 
       {/* Floating AI Widget */}
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
+      
+      <Footer />
     </div>
   )
 }

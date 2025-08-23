@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, User, Mail, Phone, Lock, Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react'
+import CustomAlert from '../../components/CustomAlert'
+import Footer from '../../components/Footer'
 import '../../styles/Register.css'
 
 const Register = () => {
@@ -12,12 +14,29 @@ const Register = () => {
     phone: '',
     password: ''
   })
+  const [alert, setAlert] = useState({
+    isVisible: false,
+    type: 'success',
+    title: '',
+    message: ''
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Register data:', formData)
-    alert('Registro exitoso! Bienvenido a BeaconHelp')
-    navigate('/')
+    setAlert({
+      isVisible: true,
+      type: 'success',
+      title: '¡Registro Exitoso!',
+      message: 'Bienvenido a BeaconHelp. Tu cuenta ha sido creada exitosamente.'
+    })
+    setTimeout(() => {
+      navigate('/')
+    }, 2000)
+  }
+
+  const closeAlert = () => {
+    setAlert(prev => ({ ...prev, isVisible: false }))
   }
 
   const handleChange = (e) => {
@@ -137,6 +156,16 @@ const Register = () => {
           </p>
         </div>
       </div>
+      
+      <CustomAlert
+        isVisible={alert.isVisible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={closeAlert}
+      />
+      
+      <Footer />
     </div>
   )
 }

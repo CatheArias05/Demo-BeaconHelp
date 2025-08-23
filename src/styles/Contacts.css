@@ -381,8 +381,30 @@
 
 .contacts-action-btn.contacts-call-btn:hover {
   background: #2563eb;
+  border-color: #2563eb;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Estilos específicos para el botón llamar en el modal de detalles */
+.contacts-modal-actions .contacts-call-btn {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contacts-modal-actions .contacts-call-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
 }
 
 .contacts-action-icon {
@@ -494,7 +516,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   padding: 20px;
 }
 
@@ -775,4 +797,403 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===== MODAL DE EDICIÓN - DISEÑO CONSISTENTE ===== */
+
+/* Overlay del Modal */
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Contenedor Principal del Modal */
+.edit-modal-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header del Modal */
+.edit-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.edit-modal-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.edit-modal-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-modal-icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.edit-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.edit-modal-subtitle {
+  font-size: 14px;
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
+.edit-modal-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Cuerpo del Modal */
+.edit-modal-body {
+  padding: 24px;
+  background: white;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.edit-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Campos del Formulario */
+.edit-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.edit-form-label-icon {
+  width: 16px;
+  height: 16px;
+  color: #3b82f6;
+}
+
+.edit-form-input-wrapper {
+  position: relative;
+}
+
+.edit-form-input,
+.edit-form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  background: white;
+  transition: all 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.edit-form-input:focus,
+.edit-form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.edit-form-input:hover:not(:focus),
+.edit-form-select:hover:not(:focus) {
+  border-color: #9ca3af;
+}
+
+.edit-form-input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.edit-form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%233b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 22px;
+  padding-right: 50px;
+}
+
+.edit-form-select:focus {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231d4ed8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>');
+}
+
+.edit-form-input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 
+    0 0 0 4px rgba(239, 68, 68, 0.15) !important,
+    0 4px 12px rgba(239, 68, 68, 0.2) !important;
+  animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.edit-form-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+  border: 2px solid #fca5a5;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+  animation: errorSlideIn 0.3s ease-out;
+}
+
+@keyframes errorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.edit-form-error svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(220, 38, 38, 0.3));
+}
+
+/* Botones de Acción */
+.edit-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.edit-cancel-btn {
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.edit-cancel-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
+
+.edit-save-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.edit-save-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-modal-overlay {
+    padding: 10px;
+  }
+  
+  .edit-modal-container {
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+  
+  .edit-modal-header {
+    padding: 20px;
+  }
+  
+  .edit-modal-title {
+    font-size: 18px;
+  }
+  
+  .edit-modal-subtitle {
+    font-size: 13px;
+  }
+  
+  .edit-modal-body {
+    padding: 20px;
+    max-height: 70vh;
+  }
+  
+  .edit-modal-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .edit-cancel-btn,
+  .edit-save-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-modal-overlay {
+    padding: 5px;
+  }
+  
+  .edit-modal-container {
+    border-radius: 8px;
+  }
+  
+  .edit-modal-header {
+    padding: 16px;
+  }
+  
+  .edit-modal-title {
+    font-size: 16px;
+  }
+  
+  .edit-modal-body {
+    padding: 16px;
+  }
+  
+  .edit-form-input,
+  .edit-form-select {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .edit-form-label {
+    font-size: 13px;
+  }
+  
+  .edit-cancel-btn,
+  .edit-save-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Estados de validación */
+.edit-form-input:valid {
+  border-color: #10b981;
+}
+
+.edit-form-input:valid:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Estados de error */
+.edit-form-input.error,
+.edit-form-select.error {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.edit-form-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

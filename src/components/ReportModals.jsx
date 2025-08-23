@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { X, AlertTriangle, FileText, Calendar, MapPin, Phone } from 'lucide-react'
+import CustomAlert from './CustomAlert'
 
 // Modal para Nuevo Reporte
 export function NewReportModal({ isOpen, onClose, onSubmit }) {
@@ -139,11 +140,20 @@ export function NewReportModal({ isOpen, onClose, onSubmit }) {
 
 // Modal para Ver Detalles
 export function DetailsModal({ isOpen, onClose, report, onDelete }) {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+
   const handleDelete = () => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este reporte? Esta acción no se puede deshacer.')) {
-      onDelete(report.id)
-      onClose()
-    }
+    setShowDeleteConfirm(true)
+  }
+
+  const confirmDelete = () => {
+    onDelete(report.id)
+    setShowDeleteConfirm(false)
+    onClose()
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteConfirm(false)
   }
 
   if (!isOpen || !report) return null
@@ -238,6 +248,18 @@ export function DetailsModal({ isOpen, onClose, report, onDelete }) {
             </div>
           </CardContent>
         </Card>
+        
+        <CustomAlert
+          isVisible={showDeleteConfirm}
+          type="warning"
+          title="Confirmar Eliminación"
+          message="¿Estás seguro de que quieres eliminar este reporte? Esta acción no se puede deshacer."
+          onClose={cancelDelete}
+          showConfirmButton={true}
+          onConfirm={confirmDelete}
+          confirmText="Eliminar"
+          cancelText="Cancelar"
+        />
       </div>
     </div>
   )

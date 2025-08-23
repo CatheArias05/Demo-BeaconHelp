@@ -9,6 +9,7 @@ import { Menu, X, FileText, Users, Settings, User, LogOut, Plus, Shield } from "
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
+import Footer from '../../components/Footer';
 import { NewReportModal, DetailsModal, EditModal } from '../../components/ReportModals';
 import '../../styles/Reports.css';
 import '../../styles/ReportModals.css';
@@ -208,6 +209,8 @@ export default function ReportsPage() {
         report={selectedReport}
         onUpdate={handleUpdateReport}
       />
+      
+      <Footer />
     </div>
   )
 }

@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
+import CustomAlert from '../../components/CustomAlert';
+import Footer from '../../components/Footer';
 import '../../styles/Location.css';
 import InteractiveMap from '../../components/InteractiveMap';
 
@@ -24,6 +26,12 @@ const LocationPage = () => {
   const [watchId, setWatchId] = useState(null);
   const [locationAccuracy, setLocationAccuracy] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [alert, setAlert] = useState({
+    isVisible: false,
+    type: 'success',
+    title: '',
+    message: ''
+  });
 
   const emergencyLocations = [
     {
@@ -208,9 +216,18 @@ const LocationPage = () => {
         });
       } else {
         navigator.clipboard.writeText(locationText);
-        alert('Ubicación copiada al portapapeles');
+        setAlert({
+          isVisible: true,
+          type: 'success',
+          title: 'Ubicación Copiada',
+          message: 'La ubicación de emergencia ha sido copiada al portapapeles exitosamente.'
+        });
       }
     }
+  };
+
+  const closeAlert = () => {
+    setAlert(prev => ({ ...prev, isVisible: false }));
   };
 
   // Funciones para los botones de acción
@@ -509,6 +526,16 @@ const LocationPage = () => {
       </div>
       
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
+      
+      <CustomAlert
+        isVisible={alert.isVisible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={closeAlert}
+      />
+      
+      <Footer />
     </div>
   );
 };

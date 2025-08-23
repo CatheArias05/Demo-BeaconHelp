@@ -100,12 +100,14 @@
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: calc(100vh - 4rem);
   /* Removido: margin-left: 280px; y padding-left: 320px; */
 }
 
 .settings-content {
   flex: 1;
   overflow-y: auto;
+  margin-bottom: 2rem;
 }
 
 .settings-header {
