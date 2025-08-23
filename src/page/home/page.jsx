@@ -4,6 +4,7 @@ import Sidebar from '../../components/Sidebar'
 import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
 import CustomAlert from '../../components/CustomAlert'
+import LegalModal from '../../components/LegalModal'
 import { Shield, AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin } from 'lucide-react'
 import '../../styles/Home.css'
 
@@ -20,6 +21,10 @@ const Home = () => {
     type: 'success',
     title: '',
     message: ''
+  })
+  const [legalModal, setLegalModal] = useState({
+    isOpen: false,
+    type: null // 'privacy' or 'terms'
   })
 
   const emergencyContacts = [
@@ -120,6 +125,20 @@ const Home = () => {
     setTimeout(() => {
       window.location.href = `tel:${phone}`
     }, 2000)
+  }
+
+  const openLegalModal = (type) => {
+    setLegalModal({
+      isOpen: true,
+      type
+    })
+  }
+
+  const closeLegalModal = () => {
+    setLegalModal({
+      isOpen: false,
+      type: null
+    })
   }
 
   return (
@@ -277,6 +296,13 @@ const Home = () => {
         onClose={closeAlert}
       />
 
+      {/* Legal Modal */}
+      <LegalModal
+        isOpen={legalModal.isOpen}
+        type={legalModal.type}
+        onClose={closeLegalModal}
+      />
+
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
@@ -288,11 +314,23 @@ const Home = () => {
             Denuncia sin miedo, te acompañamos en cada paso hacia la seguridad ciudadana.
           </p>
           <div className="footer-links">
-            <span>© 2024 BeaconHelp</span>
+            <span>© 2025 BeaconHelp</span>
             <span>•</span>
-            <a href="#" className="footer-link">Privacidad</a>
+            <button 
+              onClick={() => openLegalModal('privacy')} 
+              className="footer-link"
+              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              Privacidad
+            </button>
             <span>•</span>
-            <a href="#" className="footer-link">Términos</a>
+            <button 
+              onClick={() => openLegalModal('terms')} 
+              className="footer-link"
+              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              Términos
+            </button>
           </div>
         </div>
       </footer>
