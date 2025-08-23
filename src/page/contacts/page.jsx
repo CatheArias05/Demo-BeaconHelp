@@ -149,11 +149,7 @@ export default function ContactsPage() {
                 <div key={contact.id} className="contacts-item">
                   <div className="contacts-item-info">
                     <div className="contacts-item-avatar">
-                      {contact.avatar ? (
-                        <img src={contact.avatar} alt={contact.name} />
-                      ) : (
-                        contact.name.split(' ').map(n => n[0]).join('')
-                      )}
+                      {contact.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div className="contacts-item-details">
                       <p className="contacts-item-name">{contact.name}</p>
