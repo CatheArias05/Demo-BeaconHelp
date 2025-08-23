@@ -324,26 +324,210 @@
   color: #64748b;
 }
 
-.resources-legal-call-btn {
-  background: #059669;
+/* Estilos base para botones de emergencia */
+.resources-emergency-call-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
   color: white;
   border: none;
   cursor: pointer;
   padding: 12px 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+}
+
+.resources-emergency-call-btn:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* Estilos base para botones de apoyo psicológico */
+.resources-support-call-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.resources-support-call-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Actualizar estilos del botón legal para mayor consistencia */
+.resources-legal-call-btn {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
 }
 
 .resources-legal-call-btn:hover {
-  background: #047857;
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
 }
 
+/* Estilos para el ícono de llamada */
 .resources-call-icon {
   height: 16px;
   width: 16px;
+}
+
+/* Estilos de modo oscuro para uniformidad con home y sidebar */
+[data-theme="dark"] .resources-container {
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .resources-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .resources-subtitle {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .resources-logo {
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .resources-logo:hover {
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+[data-theme="dark"] .resources-emergency-card,
+[data-theme="dark"] .resources-support-card,
+[data-theme="dark"] .resources-legal-card {
+  background: rgba(45, 55, 72, 0.95);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .resources-emergency-card:hover,
+[data-theme="dark"] .resources-support-card:hover,
+[data-theme="dark"] .resources-legal-card:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.1) 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="dark"] .resources-section-title {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .resources-section-description {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .resources-emergency-item,
+[data-theme="dark"] .resources-support-item,
+[data-theme="dark"] .resources-legal-item {
+  background: rgba(45, 55, 72, 0.95);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .resources-emergency-item:hover,
+[data-theme="dark"] .resources-support-item:hover,
+[data-theme="dark"] .resources-legal-item:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.1) 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="dark"] .resources-emergency-title,
+[data-theme="dark"] .resources-support-title,
+[data-theme="dark"] .resources-legal-title {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .resources-emergency-phone,
+[data-theme="dark"] .resources-support-phone,
+[data-theme="dark"] .resources-legal-phone {
+  background: rgba(102, 126, 234, 0.2);
+  color: #667eea;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .resources-emergency-availability,
+[data-theme="dark"] .resources-support-availability,
+[data-theme="dark"] .resources-legal-availability {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .resources-emergency-call-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+[data-theme="dark"] .resources-emergency-call-btn:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .resources-support-call-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .resources-support-call-btn:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .resources-legal-call-btn {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+[data-theme="dark"] .resources-legal-call-btn:hover {
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .resources-section-icon {
+  color: var(--primary-blue-dark);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+[data-theme="dark"] .resources-floating-icons {
+  opacity: 0.02;
+}
+
+[data-theme="dark"] .resources-heart-icon {
+  color: #667eea;
+  opacity: 0.15;
 }

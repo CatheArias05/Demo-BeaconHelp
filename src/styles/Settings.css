@@ -72,16 +72,16 @@
 }
 
 .settings-header h1 {
-  font-size: 2.5rem;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary);  /* Cambiar de #2d3748 */
+  color: var(--text-primary); /* ✅ Ya está usando la variable correcta */
   margin-bottom: 0.5rem;
   text-shadow: none;
 }
 
 .settings-header p {
-  font-size: 1.1rem;
-  color: var(--text-secondary);  /* Cambiar de #718096 */
+  font-size: 14px; /* Cambiar de 1.1rem a 14px */
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -168,10 +168,10 @@
 /* Etiquetas de los campos */
 .form-group label {
   display: block;
-  color: var(--text-secondary);  /* Cambiar de #4a5568 */
+  color: var(--text-secondary);
   font-weight: 500;
   margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  font-size: 14px; /* Cambiar de 0.95rem a 14px */
 }
 
 /* Campos de entrada (nombre, email, teléfono, ubicación, contraseña) */
@@ -258,16 +258,15 @@
 
 /* Títulos de los toggles (Notificaciones por Email, Push, SMS, etc.) */
 .toggle-info h4 {
-  color: var(--text-primary); /* Cambiar de #2d3748 */
-  font-size: 1rem;
+  color: var(--text-primary);
+  font-size: 18px; /* Cambiar de 1rem a 18px para coincidir con section-title */
   font-weight: 600;
   margin: 0 0 0.25rem 0;
 }
 
-/* Descripciones de los toggles */
 .toggle-info p {
-  color: var(--text-secondary); /* Cambiar de #718096 */
-  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-size: 14px; /* Cambiar de 0.875rem a 14px */
   margin: 0;
 }
 
@@ -630,4 +629,284 @@ input:checked + .slider:before {
 
 .theme-btn svg {
   flex-shrink: 0;
+}
+
+/* ===== ESTILOS MODO OSCURO ===== */
+
+/* Contenedor principal */
+[data-theme="dark"] .settings-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+[data-theme="dark"] .settings-container::before {
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+}
+
+/* Header */
+[data-theme="dark"] .settings-header h1 {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .settings-header p {
+  color: #94a3b8;
+}
+
+/* Logo */
+[data-theme="dark"] .logo {
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .logo:hover {
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+/* Sidebar de navegación */
+[data-theme="dark"] .settings-sidebar {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .nav-item {
+  color: #94a3b8;
+  border: 1px solid transparent;
+}
+
+[data-theme="dark"] .nav-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #e2e8f0;
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .nav-item.active {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* Área principal de contenido */
+[data-theme="dark"] .settings-main {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .settings-content-area {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+/* Títulos de sección */
+[data-theme="dark"] .settings-section h3 {
+  color: #e2e8f0;
+}
+
+/* Etiquetas de formulario */
+[data-theme="dark"] .form-group label {
+  color: #94a3b8;
+}
+
+/* Campos de entrada */
+[data-theme="dark"] .form-input {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .form-input::placeholder {
+  color: #64748b;
+}
+
+[data-theme="dark"] .form-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .form-select option {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+/* Botón de toggle de contraseña */
+[data-theme="dark"] .password-toggle {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .password-toggle:hover {
+  color: #e2e8f0;
+}
+
+/* Elementos de toggle */
+[data-theme="dark"] .toggle-item {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .toggle-item:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .toggle-info h4 {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .toggle-info p {
+  color: #94a3b8;
+}
+
+/* Slider del toggle */
+[data-theme="dark"] .slider {
+  background-color: #475569;
+}
+
+[data-theme="dark"] .slider:before {
+  background-color: #1e293b;
+}
+
+[data-theme="dark"] input:checked + .slider {
+  background-color: #3b82f6;
+}
+
+/* Selector de tema */
+[data-theme="dark"] .theme-selector {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .theme-btn {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .theme-btn:hover {
+  background: rgba(30, 41, 59, 0.8);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .theme-btn.active {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* Botones de acción */
+[data-theme="dark"] .save-btn {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .save-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+[data-theme="dark"] .reset-btn {
+  background: rgba(30, 41, 59, 0.8);
+  color: #94a3b8;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .reset-btn:hover {
+  background: rgba(30, 41, 59, 1);
+  color: #e2e8f0;
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Acciones de configuración */
+[data-theme="dark"] .settings-actions {
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Logo de configuración */
+[data-theme="dark"] .settings-logo {
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}
+
+[data-theme="dark"] .settings-logo:hover {
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.settings-logo {
+  height: 48px;
+  width: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  transition: transform 0.3s ease;
+  animation: logo-breathe 4s ease-in-out infinite;
+}
+
+/* Animación sutil de respiración para el logo */
+@keyframes logo-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.settings-logo:hover {
+  animation-play-state: paused;
+  transform: scale(1.05);
+}
+
+/* Estilos para selector de tema */
+.theme-selector {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--hover-bg);  /* Cambiar de #f7fafc */
+  padding: 0.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);  /* Cambiar de #e2e8f0 */
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: var(--text-secondary);  /* Cambiar de #718096 */
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.theme-btn:hover {
+  background: var(--card-bg);  /* Cambiar de #edf2f7 */
+  color: var(--text-primary);  /* Cambiar de #4a5568 */
+}
+
+.theme-btn.active {
+  background: #667eea;
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.theme-btn svg {
+  flex-shrink: 0;
+}
+
+.settings-section h3 {
+  color: var(--text-primary);
+  font-size: 18px; /* Cambiar de 1rem a 18px para coincidir con section-title */
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.toggle-info p {
+  color: var(--text-secondary);
+  font-size: 14px; /* Cambiar de 0.875rem a 14px */
+  margin: 0;
 }

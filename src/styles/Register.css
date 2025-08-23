@@ -214,3 +214,120 @@
 .login-link:hover {
   color: #2563eb;
 }
+
+/* ===== ESTILOS MODO OSCURO PARA REGISTRO ===== */
+
+/* Contenedor principal */
+[data-theme="dark"] .register-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* Tarjeta de registro */
+[data-theme="dark"] .register-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+/* Botón de regreso */
+[data-theme="dark"] .back-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .back-icon {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .back-btn:hover .back-icon {
+  color: #60a5fa;
+}
+
+/* Logo con efectos mejorados */
+[data-theme="dark"] .register-logo-img {
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4), 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .register-logo-img:hover {
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Títulos y textos */
+[data-theme="dark"] .register-app-title {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .register-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .register-subtitle {
+  color: #94a3b8;
+}
+
+/* Etiquetas de formulario */
+[data-theme="dark"] .form-label {
+  color: #e2e8f0;
+}
+
+/* Iconos de entrada */
+[data-theme="dark"] .input-icon {
+  color: #64748b;
+}
+
+/* Campos de entrada */
+[data-theme="dark"] .form-input {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .form-input::placeholder {
+  color: #64748b;
+}
+
+[data-theme="dark"] .form-input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+/* Botón de mostrar/ocultar contraseña */
+[data-theme="dark"] .password-toggle:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .toggle-icon {
+  color: #64748b;
+}
+
+[data-theme="dark"] .password-toggle:hover .toggle-icon {
+  color: #60a5fa;
+}
+
+/* Botón de envío */
+[data-theme="dark"] .submit-btn {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .submit-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4), 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer */
+[data-theme="dark"] .footer-text {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .login-link {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .login-link:hover {
+  color: #3b82f6;
+}
