@@ -1,0 +1,459 @@
+.resources-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.resources-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.resources-floating-icons {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+}
+
+.resources-floating-icon {
+  position: absolute;
+  animation: pulse 3s infinite;
+}
+
+.resources-heart-icon {
+  height: 16px;
+  width: 16px;
+  color: #3b82f6;
+  opacity: 0.2;
+}
+
+.resources-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+.resources-main-content {
+  padding-top: 80px;
+  padding-bottom: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 448px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.resources-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.resources-logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.resources-logo {
+  height: 56px;
+  width: 56px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.resources-logo:hover {
+  transform: scale(1.05);
+}
+
+.resources-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e293b;
+  margin: 0;
+}
+
+.resources-subtitle {
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+}
+
+.resources-emergency-section {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.5) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.resources-emergency-header {
+  margin-bottom: 16px;
+}
+
+.resources-emergency-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.resources-emergency-icon {
+  height: 20px;
+  width: 20px;
+  color: #dc2626;
+}
+
+.resources-emergency-description {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.resources-emergency-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resources-emergency-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.resources-emergency-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resources-emergency-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.resources-emergency-name {
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: #1e293b;
+}
+
+.resources-emergency-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.resources-emergency-phone {
+  font-size: 12px;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.resources-emergency-availability {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Actualización de botones de emergencia */
+.resources-emergency-call-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.resources-emergency-call-btn:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.4);
+}
+
+/* Actualización de botones de apoyo */
+.resources-support-call-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.resources-support-call-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
+}
+
+/* Actualización de botones legales */
+.resources-legal-call-btn {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.resources-legal-call-btn:hover {
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.4);
+}
+
+.resources-support-section {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.5) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.resources-support-header {
+  margin-bottom: 16px;
+}
+
+.resources-support-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.resources-support-icon {
+  height: 20px;
+  width: 20px;
+  color: #3b82f6;
+}
+
+.resources-support-description {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.resources-support-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resources-support-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.resources-support-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resources-support-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.resources-support-name {
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: #1e293b;
+}
+
+.resources-support-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.resources-support-phone {
+  font-size: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.resources-support-availability {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.resources-support-call-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.resources-support-call-btn:hover {
+  background: #2563eb;
+}
+
+.resources-legal-section {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.5) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.resources-legal-header {
+  margin-bottom: 16px;
+}
+
+.resources-legal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.resources-legal-icon {
+  height: 20px;
+  width: 20px;
+  color: #059669;
+}
+
+.resources-legal-description {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.resources-legal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resources-legal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.resources-legal-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resources-legal-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.resources-legal-name {
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: #1e293b;
+}
+
+.resources-legal-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.resources-legal-phone {
+  font-size: 12px;
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.resources-legal-availability {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.resources-legal-call-btn {
+  background: #059669;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.resources-legal-call-btn:hover {
+  background: #047857;
+}
+
+.resources-call-icon {
+  height: 16px;
+  width: 16px;
+}
