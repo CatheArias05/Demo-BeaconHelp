@@ -100,7 +100,7 @@
 .panic-button {
   width: 140px;
   height: 140px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bold;
   background: linear-gradient(135deg, var(--primary-blue-darker) 0%, var(--primary-blue-dark) 50%, var(--primary-blue) 100%);
   color: white;
