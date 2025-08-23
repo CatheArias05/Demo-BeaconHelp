@@ -24,8 +24,8 @@ const InteractiveMap = ({ userLocation, emergencyLocations = [], className = '' 
       mapInstanceRef.current.remove();
     }
 
-    // Coordenadas por defecto (Caracas, Venezuela)
-    const defaultCenter = [10.4806, -66.9036];
+    // Coordenadas por defecto (Manizales, Colombia)
+    const defaultCenter = [5.0703, -75.5138];
     const center = userLocation ? [userLocation.lat, userLocation.lng] : defaultCenter;
 
     // Crear nuevo mapa
@@ -70,7 +70,7 @@ const InteractiveMap = ({ userLocation, emergencyLocations = [], className = '' 
             const icons = {
               hospital: '🏥',
               fire_station: '🚒',
-              police: '👮',
+              police: '👮‍♂️',
               medical: '🚑',
               emergency: '🆘'
             };
@@ -112,7 +112,7 @@ const InteractiveMap = ({ userLocation, emergencyLocations = [], className = '' 
               
               <div style="display: flex; gap: 8px;">
                 <button onclick="window.open('tel:${location.phone}')" style="padding: 6px 12px; background: #dc2626; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">📞 Llamar</button>
-                <button onclick="window.open('https://maps.google.com/dir/?api=1&destination=${location.coordinates.lat},${location.coordinates.lng}')" style="padding: 6px 12px; background: #2563eb; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">🧭 Direcciones</button>
+                <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${location.coordinates.lat},${location.coordinates.lng}')" style="padding: 6px 12px; background: #2563eb; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">🧭 Direcciones</button>
               </div>
             </div>
           `;

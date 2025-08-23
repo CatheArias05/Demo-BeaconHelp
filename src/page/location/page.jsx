@@ -28,58 +28,69 @@ const LocationPage = () => {
   const emergencyLocations = [
     {
       id: 1,
-      name: "Hospital General",
+      name: "Hospital de Caldas",
       type: "hospital",
-      address: "Av. Principal 123, Centro",
-      phone: "(555) 0123",
-      coordinates: { lat: 10.4806, lng: -66.9036 },
+      address: "Calle 15 #23-55, Manizales",
+      phone: "(606) 878-6000",
+      coordinates: { lat: 5.0703, lng: -75.5138 },
       status: "available",
-      capacity: "85%",
+      capacity: "78%",
       services: ["Emergencias", "UCI", "Cirugía", "Pediatría"]
     },
     {
       id: 2,
-      name: "Estación de Bomberos Central",
+      name: "Bomberos Manizales",
       type: "fire_station",
-      address: "Calle 5ta con Av. Libertador",
-      phone: "911",
-      coordinates: { lat: 10.4906, lng: -66.8936 },
-      status: "active",
+      address: "Carrera 23 #26-40, Centro",
+      phone: "119",
+      coordinates: { lat: 5.0689, lng: -75.5174 },
+      status: "available",
       capacity: "Disponible",
       services: ["Rescate", "Incendios", "Emergencias"]
     },
     {
       id: 3,
-      name: "Policía Nacional",
+      name: "Policía Nacional Manizales",
       type: "police",
-      address: "Plaza Bolívar, Centro",
-      phone: "171",
-      coordinates: { lat: 10.4706, lng: -66.9136 },
+      address: "Carrera 22 #25-18, Centro",
+      phone: "123",
+      coordinates: { lat: 5.0692, lng: -75.5165 },
       status: "available",
       capacity: "Activo",
       services: ["Seguridad", "Emergencias", "Patrullaje"]
     },
     {
       id: 4,
-      name: "Cruz Roja Venezolana",
+      name: "Cruz Roja Caldas",
       type: "medical",
-      address: "Av. Urdaneta, Caracas",
-      phone: "0212-571-4111",
-      coordinates: { lat: 10.4606, lng: -66.9236 },
+      address: "Calle 61 #23-15, Manizales",
+      phone: "(606) 884-5555",
+      coordinates: { lat: 5.0665, lng: -75.5201 },
       status: "busy",
       capacity: "Ocupado",
       services: ["Primeros Auxilios", "Ambulancia", "Rescate"]
     },
     {
       id: 5,
-      name: "Defensa Civil",
+      name: "Defensa Civil Caldas",
       type: "emergency",
-      address: "Av. Francisco de Miranda",
-      phone: "0800-CIVIL",
-      coordinates: { lat: 10.4506, lng: -66.9336 },
+      address: "Carrera 20 #30-45, Manizales",
+      phone: "(606) 887-9000",
+      coordinates: { lat: 5.0721, lng: -75.5189 },
       status: "available",
       capacity: "Disponible",
       services: ["Prevención", "Rescate", "Emergencias"]
+    },
+    {
+      id: 6,
+      name: "Hospital Universitario de Caldas",
+      type: "hospital",
+      address: "Calle 7 #8-10, Manizales",
+      phone: "(606) 878-1500",
+      coordinates: { lat: 5.0647, lng: -75.5143 },
+      status: "available",
+      capacity: "65%",
+      services: ["Emergencias", "Trauma", "Medicina General"]
     }
   ];
 
@@ -202,6 +213,16 @@ const LocationPage = () => {
     }
   };
 
+  // Funciones para los botones de acción
+  const handleCall = (phone) => {
+    window.open(`tel:${phone}`, '_self');
+  };
+
+  const handleDirections = (coordinates) => {
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${coordinates.lat},${coordinates.lng}`;
+    window.open(url, '_blank');
+  };
+
   useEffect(() => {
     startLocationTracking();
     return () => {
@@ -267,20 +288,16 @@ const LocationPage = () => {
         
         <div className="location-content">
           <div className="location-header">
-            <div className="logo-section">
-              <div className="logo-header">
-                <div className="logo">
-                  <img 
-                    src="/images/beacon-logo.png" 
-                    alt="BeaconHelp Logo" 
-                    className="logo-img"
-                  />
-                </div>
-                <div>
-                  <h1>Ubicaciones de Emergencia</h1>
-                  <p>Encuentra servicios de emergencia cercanos a tu ubicación</p>
-                </div>
-              </div>
+            <div className="logo">
+              <img 
+                src="/images/beacon-logo.png" 
+                alt="BeaconHelp Logo" 
+                className="logo-img"
+              />
+            </div>
+            <div className="header-content">
+              <h1>Ubicaciones de Emergencia</h1>
+              <p>Encuentra servicios de emergencia cercanos a tu ubicación</p>
             </div>
           </div>
 
@@ -411,11 +428,17 @@ const LocationPage = () => {
                         </div>
                         
                         <div className="location-actions">
-                          <button className="call-btn">
+                          <button 
+                            className="call-btn"
+                            onClick={() => handleCall(location.phone)}
+                          >
                             <Phone size={16} />
                             Llamar
                           </button>
-                          <button className="directions-btn">
+                          <button 
+                            className="directions-btn"
+                            onClick={() => handleDirections(location.coordinates)}
+                          >
                             <Navigation size={16} />
                             Direcciones
                           </button>
