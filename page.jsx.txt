@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Sidebar from '../../components/Sidebar'
-import Header from '../../components/Header'
-import FloatingAIWidget from '../../components/FloatingAIWidget'
-import CustomAlert from '../../components/CustomAlert'
-import { Shield, AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin } from 'lucide-react'
-import '../../styles/Home.css'
+"use client"
+
+import { useState, useEffect } from "react"
+import Sidebar from "./Sidebar"
+import Header from "./Header"
+import FloatingAIWidget from "./FloatingAIWidget"
+import { AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin } from 'lucide-react'
+import "../styles/Home.css"
 
 const Home = () => {
-  const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [userLocation, setUserLocation] = useState(null)
   const [isPanicActive, setIsPanicActive] = useState(false)
   const [isAIWidgetOpen, setIsAIWidgetOpen] = useState(false)
-  const [alert, setAlert] = useState({
-    isVisible: false,
-    type: 'success',
-    title: '',
-    message: ''
-  })
 
   const emergencyContacts = [
     { id: 1, name: "María González", relation: "Hermana", phone: "+57 300 123 4567" },
@@ -31,11 +24,6 @@ const Home = () => {
     { title: "Línea Nacional", phone: "155", available: "24/7" },
     { title: "Policía Nacional", phone: "123", available: "24/7" },
   ]
-
-  // Cerrar menú automáticamente al entrar al Home
-  useEffect(() => {
-    setIsMenuOpen(false)
-  }, [])
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -53,101 +41,21 @@ const Home = () => {
     }
   }, [])
 
-  const showAlert = (type, title, message) => {
-    setAlert({
-      isVisible: true,
-      type,
-      title,
-      message
-    })
-  }
-
-  const closeAlert = () => {
-    setAlert(prev => ({ ...prev, isVisible: false }))
-  }
-
   const handlePanicButton = () => {
     setIsPanicActive(true)
     setTimeout(() => {
       setIsPanicActive(false)
-      showAlert(
-        'success',
-        '¡Alerta Enviada!',
-        'Tu alerta de emergencia ha sido enviada exitosamente a tus contactos de emergencia y autoridades locales.'
-      )
+      alert("Alerta enviada a contactos de emergencia y autoridades")
     }, 3000)
-  }
-
-  const handleEmergencyCall = () => {
-    showAlert(
-      'warning',
-      'Llamada de Emergencia',
-      'Iniciando llamada al 123 - Policía Nacional. Mantén la calma y proporciona tu ubicación.'
-    )
-    setTimeout(() => {
-      window.location.href = 'tel:123'
-    }, 2000)
-  }
-
-  const handleSupportChat = () => {
-    showAlert(
-      'success',
-      'Chat de Apoyo',
-      'Abriendo chat con nuestro asistente de IA. Estamos aquí para ayudarte.'
-    )
-    setTimeout(() => {
-      setIsAIWidgetOpen(true)
-    }, 1500)
-  }
-
-  const handleContactCall = (phone) => {
-    showAlert(
-      'success',
-      'Llamando Contacto',
-      `Iniciando llamada a ${phone}. Tu contacto de emergencia será notificado.`
-    )
-    setTimeout(() => {
-      window.location.href = `tel:${phone}`
-    }, 2000)
-  }
-
-  const handleResourceCall = (phone) => {
-    showAlert(
-      'success',
-      'Línea de Apoyo',
-      `Conectando con ${phone}. Línea de apoyo disponible 24/7 para asistirte.`
-    )
-    setTimeout(() => {
-      window.location.href = `tel:${phone}`
-    }, 2000)
   }
 
   return (
     <div className="home-container">
-      {/* Background Animation */}
-      <div className="background-animation">
-        <div className="floating-icons">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="floating-icon" style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-            }}>
-              <Shield className="shield-icon" />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Sidebar 
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen} 
-        currentPage="home"
-      />
+      <Sidebar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} currentPage="home" />
 
       {isMenuOpen && <div className="overlay" onClick={() => setIsMenuOpen(false)} />}
 
-      <Header 
+      <Header
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         isUserMenuOpen={isUserMenuOpen}
@@ -176,34 +84,32 @@ const Home = () => {
         {/* Panic Button */}
         <div className="panic-section">
           <button
-            className={`panic-button ${isPanicActive ? 'panic-active' : ''}`}
+            className={`panic-button ${isPanicActive ? "panic-active" : ""}`}
             onClick={handlePanicButton}
             disabled={isPanicActive}
           >
             {isPanicActive ? (
               <div className="panic-content panic-sending">
                 <AlertTriangle className="panic-icon" />
-                Enviando Alerta...
+                Enviando...
               </div>
             ) : (
               <div className="panic-content">
                 <AlertTriangle className="panic-icon" />
-                <span className="panic-text">EMERGENCIA</span>
+                <span>AYUDA</span>
               </div>
             )}
           </button>
-          <p className="panic-description">
-            Presiona para enviar alerta inmediata a tus contactos y autoridades
-          </p>
+          <p className="panic-description">Presiona para enviar alerta inmediata a tus contactos y autoridades</p>
         </div>
 
         {/* Quick Actions */}
         <div className="quick-actions">
-          <button className="quick-action-btn" onClick={handleEmergencyCall}>
+          <button className="quick-action-btn">
             <PhoneCall className="action-icon" />
             <span>Llamar 123</span>
           </button>
-          <button className="quick-action-btn" onClick={handleSupportChat}>
+          <button className="quick-action-btn">
             <MessageCircle className="action-icon" />
             <span>Chat Apoyo</span>
           </button>
@@ -223,14 +129,17 @@ const Home = () => {
               <div key={index} className="contact-item">
                 <div className="contact-info">
                   <div className="contact-avatar">
-                    {contact.name.split(" ").map(n => n[0]).join("")}
+                    {contact.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </div>
                   <div className="contact-details">
                     <p className="contact-name">{contact.name}</p>
                     <p className="contact-relation">{contact.relation}</p>
                   </div>
                 </div>
-                <button className="contact-phone-btn" onClick={() => handleContactCall(contact.phone)}>
+                <button className="contact-phone-btn">
                   <Phone className="phone-icon" />
                 </button>
               </div>
@@ -257,7 +166,7 @@ const Home = () => {
                     <span className="resource-availability">{resource.available}</span>
                   </div>
                 </div>
-                <button className="resource-call-btn" onClick={() => handleResourceCall(resource.phone)}>
+                <button className="resource-call-btn">
                   <Phone className="phone-icon" />
                 </button>
               </div>
@@ -267,15 +176,6 @@ const Home = () => {
       </div>
 
       <FloatingAIWidget isOpen={isAIWidgetOpen} setIsOpen={setIsAIWidgetOpen} />
-
-      {/* Custom Alert */}
-      <CustomAlert
-        isVisible={alert.isVisible}
-        type={alert.type}
-        title={alert.title}
-        message={alert.message}
-        onClose={closeAlert}
-      />
 
       {/* Footer */}
       <footer className="footer">
@@ -290,9 +190,13 @@ const Home = () => {
           <div className="footer-links">
             <span>© 2024 BeaconHelp</span>
             <span>•</span>
-            <a href="#" className="footer-link">Privacidad</a>
+            <a href="#" className="footer-link">
+              Privacidad
+            </a>
             <span>•</span>
-            <a href="#" className="footer-link">Términos</a>
+            <a href="#" className="footer-link">
+              Términos
+            </a>
           </div>
         </div>
       </footer>

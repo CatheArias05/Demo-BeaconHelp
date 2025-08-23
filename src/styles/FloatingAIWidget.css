@@ -42,6 +42,56 @@
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  animation: robot-float 4s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+/* Animación principal del robot - flotación suave */
+@keyframes robot-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) brightness(1);
+  }
+  25% {
+    transform: translateY(-3px) rotate(1deg) scale(1.02);
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2)) brightness(1.05);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg) scale(1.03);
+    filter: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.3)) brightness(1.1);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-1deg) scale(1.02);
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2)) brightness(1.05);
+  }
+}
+
+/* Animación al hacer hover en el botón */
+.ai-btn:hover .ai-robot-img {
+  animation: robot-excited 2s ease-in-out infinite;
+}
+
+@keyframes robot-excited {
+  0%, 100% {
+    transform: translateY(-2px) rotate(0deg) scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.4)) brightness(1.15);
+  }
+  20% {
+    transform: translateY(-6px) rotate(3deg) scale(1.08);
+    filter: drop-shadow(0 8px 16px rgba(59, 130, 246, 0.5)) brightness(1.2);
+  }
+  40% {
+    transform: translateY(-4px) rotate(-2deg) scale(1.06);
+    filter: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.45)) brightness(1.18);
+  }
+  60% {
+    transform: translateY(-7px) rotate(2deg) scale(1.07);
+    filter: drop-shadow(0 8px 16px rgba(59, 130, 246, 0.5)) brightness(1.2);
+  }
+  80% {
+    transform: translateY(-3px) rotate(-1deg) scale(1.05);
+    filter: drop-shadow(0 5px 10px rgba(59, 130, 246, 0.4)) brightness(1.15);
+  }
 }
 
 .ai-status-indicator {
