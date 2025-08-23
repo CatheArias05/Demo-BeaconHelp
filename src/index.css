@@ -40,6 +40,47 @@
   --border-radius-md: 12px;
   --border-radius-lg: 16px;
   --border-radius-xl: 20px;
+  
+  /* Variables de tema claro (por defecto) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --text-muted: #a0aec0;  /* AGREGAR ESTA LÍNEA */
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e0;  /* AGREGAR ESTA LÍNEA */
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;  /* AGREGAR ESTA LÍNEA */
+  --hover-bg: #f7fafc;  /* AGREGAR ESTA LÍNEA */
+  --primary-color: #667eea;  /* AGREGAR ESTA LÍNEA */
+  --overlay-bg: rgba(255, 255, 255, 0.1);  /* AGREGAR ESTA LÍNEA */
+}
+
+/* Tema oscuro */
+[data-theme="dark"] {
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --text-primary: #f7fafc;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;  /* AGREGAR ESTA LÍNEA */
+  --border-color: #4a5568;
+  --border-hover: #718096;  /* AGREGAR ESTA LÍNEA */
+  --card-bg: #2d3748;
+  --input-bg: #2d3748;  /* AGREGAR ESTA LÍNEA */
+  --hover-bg: #4a5568;  /* AGREGAR ESTA LÍNEA */
+  --primary-color: #667eea;  /* AGREGAR ESTA LÍNEA */
+  --overlay-bg: rgba(0, 0, 0, 0.3);  /* AGREGAR ESTA LÍNEA */
+  
+  /* Actualizar gradientes para tema oscuro */
+  --bg-card: linear-gradient(135deg, #2d3748 0%, rgba(26, 32, 44, 0.8) 100%);
+  --primary-hover: #5a67d8;
+}
+
+/* Aplicar variables a elementos base */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Animaciones globales mejoradas */

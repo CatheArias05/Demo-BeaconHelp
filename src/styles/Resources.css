@@ -1,6 +1,6 @@
 .resources-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
 }
@@ -87,26 +87,23 @@
 .resources-title {
   font-size: 24px;
   font-weight: bold;
-  color: #1e293b;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .resources-subtitle {
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 500;
   margin: 0;
 }
 
+/* Sección de emergencia */
 .resources-emergency-section {
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.5) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 24px;
-}
-
-.resources-emergency-header {
-  margin-bottom: 16px;
 }
 
 .resources-emergency-title {
@@ -116,24 +113,13 @@
   margin: 0 0 8px 0;
   font-size: 18px;
   font-weight: 600;
-}
-
-.resources-emergency-icon {
-  height: 20px;
-  width: 20px;
-  color: #dc2626;
+  color: var(--text-primary);
 }
 
 .resources-emergency-description {
   font-size: 14px;
-  color: #64748b;
+  color: var(--text-secondary);
   margin: 0;
-}
-
-.resources-emergency-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
 .resources-emergency-item {
@@ -141,9 +127,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: white;
+  background: var(--bg-primary);
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
   transition: all 0.2s ease;
 }
 
@@ -151,118 +137,24 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.resources-emergency-info {
-  display: flex;
-  flex-direction: column;
-}
-
 .resources-emergency-name {
   font-weight: 500;
   margin: 0 0 4px 0;
-  color: #1e293b;
-}
-
-.resources-emergency-details {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.resources-emergency-phone {
-  font-size: 12px;
-  background: rgba(220, 38, 38, 0.1);
-  color: #dc2626;
-  border: 1px solid rgba(220, 38, 38, 0.2);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .resources-emergency-availability {
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
-/* Actualización de botones de emergencia */
-.resources-emergency-call-btn {
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-}
-
-.resources-emergency-call-btn:hover {
-  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.4);
-}
-
-/* Actualización de botones de apoyo */
-.resources-support-call-btn {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.resources-support-call-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
-}
-
-/* Actualización de botones legales */
-.resources-legal-call-btn {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
-}
-
-.resources-legal-call-btn:hover {
-  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.4);
-}
-
+/* Sección de apoyo psicológico */
 .resources-support-section {
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.5) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 24px;
-}
-
-.resources-support-header {
-  margin-bottom: 16px;
 }
 
 .resources-support-title {
@@ -272,24 +164,13 @@
   margin: 0 0 8px 0;
   font-size: 18px;
   font-weight: 600;
-}
-
-.resources-support-icon {
-  height: 20px;
-  width: 20px;
-  color: #3b82f6;
+  color: var(--text-primary);
 }
 
 .resources-support-description {
   font-size: 14px;
-  color: #64748b;
+  color: var(--text-secondary);
   margin: 0;
-}
-
-.resources-support-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
 .resources-support-item {
@@ -297,9 +178,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: white;
+  background: var(--bg-primary);
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
   transition: all 0.2s ease;
 }
 
@@ -307,64 +188,41 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.resources-support-info {
-  display: flex;
-  flex-direction: column;
-}
-
 .resources-support-name {
   font-weight: 500;
   margin: 0 0 4px 0;
-  color: #1e293b;
-}
-
-.resources-support-details {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.resources-support-phone {
-  font-size: 12px;
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .resources-support-availability {
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
-.resources-support-call-btn {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 12px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.2s;
-}
-
-.resources-support-call-btn:hover {
-  background: #2563eb;
-}
-
+/* Sección de asistente legal */
 .resources-legal-section {
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.5) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);  /* ✅ Usa variables de tema */
+  border: 1px solid var(--border-color);  /* ✅ Usa variables de tema */
   border-radius: 8px;
   padding: 24px;
+}
+
+.resources-legal-title {
+  color: var(--text-primary);  /* ✅ Usa variables de tema */
+}
+
+.resources-legal-description {
+  color: var(--text-secondary);  /* ✅ Usa variables de tema */
+}
+
+.resources-legal-item {
+  background: var(--bg-primary);  /* ✅ Usa variables de tema */
+  border: 1px solid var(--border-color);  /* ✅ Usa variables de tema */
+}
+
+.resources-legal-name {
+  color: var(--text-primary);  /* ✅ Usa variables de tema */
 }
 
 .resources-legal-header {
@@ -403,10 +261,30 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: white;
+  background: var(--bg-primary);  /* Cambiar de white */
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);  /* Cambiar de rgba(0, 0, 0, 0.05) */
   transition: all 0.2s ease;
+}
+
+/* Corregir color del nombre (Fiscalía General, Defensoría del Pueblo) */
+.resources-legal-name {
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: var(--text-primary);  /* Cambiar de #1e293b */
+}
+
+/* Corregir color de la descripción */
+.resources-legal-description {
+  font-size: 14px;
+  color: var(--text-secondary);  /* Cambiar de #64748b */
+  margin: 0;
+}
+
+/* Corregir color de disponibilidad (24/7, Lun-Vie 8AM-5PM) */
+.resources-legal-availability {
+  font-size: 12px;
+  color: var(--text-secondary);  /* Cambiar de #64748b */
 }
 
 .resources-legal-item:hover {

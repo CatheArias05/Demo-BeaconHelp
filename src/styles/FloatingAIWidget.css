@@ -319,3 +319,68 @@
   height: 16px;
   width: 16px;
 }
+
+/* Estilos para modo oscuro del chat AI */
+[data-theme="dark"] .ai-chat-container {
+  background: rgba(45, 55, 72, 0.95);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .ai-header-title {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-header-subtitle {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .ai-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .ai-close-icon {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-message-ai .ai-message-bubble {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-quick-action {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-quick-action:hover {
+  background: var(--hover-bg);
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .ai-action-icon {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-action-label {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-input {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ai-input::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .ai-input:focus {
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .ai-status-indicator {
+  border: 2px solid var(--bg-primary);
+}

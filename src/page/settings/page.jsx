@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Settings, User, Bell, Shield, Globe, Moon, Sun, Volume2, VolumeX, Smartphone, Mail, Lock, Eye, EyeOff, Save, RefreshCw } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import FloatingAIWidget from '../../components/FloatingAIWidget';
@@ -8,6 +9,7 @@ import '../../styles/Settings.css';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
+  const { isDarkMode, setTheme } = useTheme();
   const [activeTab, setActiveTab] = useState('profile');
   
   // Estados para el menú y sidebar
@@ -35,7 +37,7 @@ const SettingsPage = () => {
     dataCollection: true,
     
     // Apariencia
-    darkMode: false,
+    darkMode: isDarkMode,
     language: 'es',
     fontSize: 'medium',
     
@@ -53,6 +55,11 @@ const SettingsPage = () => {
       ...prev,
       [key]: value
     }));
+    
+    // Si es el cambio de tema, aplicarlo inmediatamente
+    if (key === 'darkMode') {
+      setTheme(value ? 'dark' : 'light');
+    }
   };
 
   const handleSave = async () => {

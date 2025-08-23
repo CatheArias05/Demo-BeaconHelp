@@ -129,3 +129,68 @@
   height: 16px;
   width: 16px;
 }
+
+/* Estilos para modo oscuro del dropdown del usuario */
+[data-theme="dark"] .menu-btn {
+  background: rgba(45, 55, 72, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .menu-btn:hover {
+  background: rgba(45, 55, 72, 0.9);
+}
+
+[data-theme="dark"] .user-btn {
+  background: rgba(45, 55, 72, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .user-btn:hover {
+  background: rgba(45, 55, 72, 0.9);
+}
+
+[data-theme="dark"] .user-avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+[data-theme="dark"] .user-dropdown {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .user-info {
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(102, 126, 234, 0.05);
+}
+
+[data-theme="dark"] .user-name {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .user-email {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background: var(--hover-bg);
+  color: #667eea;
+}
+
+[data-theme="dark"] .logout-btn {
+  color: #f56565;
+}
+
+[data-theme="dark"] .logout-btn:hover {
+  background: rgba(245, 101, 101, 0.1);
+  color: #f56565;
+}
+
+[data-theme="dark"] .dropdown-icon {
+  color: inherit;
+}
