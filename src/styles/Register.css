@@ -55,8 +55,27 @@
 }
 
 .register-logo-img {
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  transition: transform 0.3s ease;
+  animation: logo-breathe 4s ease-in-out infinite;
+}
+
+/* Animación sutil de respiración para el logo */
+@keyframes logo-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.register-logo-img:hover {
+  animation-play-state: paused;
+  transform: scale(1.05);
 }
 
 .register-app-title {

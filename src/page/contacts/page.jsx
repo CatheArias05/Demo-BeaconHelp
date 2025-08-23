@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Phone, Users, Settings, Plus } from 'lucide-react'
+import { Phone, Users, Settings, Plus, Edit, Trash2, Eye, MoreVertical } from 'lucide-react'
 import Sidebar from '../../components/Sidebar'
 import Header from '../../components/Header'
 import FloatingAIWidget from '../../components/FloatingAIWidget'
@@ -27,9 +27,48 @@ export default function ContactsPage() {
     phone: ''
   })
 
-  // Estado para mensajes de feedback
+  // Estados para modales y menús
   const [showSuccess, setShowSuccess] = useState(false)
   const [errors, setErrors] = useState({})
+  const [activeDropdown, setActiveDropdown] = useState(null)
+  const [editingContact, setEditingContact] = useState(null)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [showDetailsModal, setShowDetailsModal] = useState(false)
+  const [selectedContact, setSelectedContact] = useState(null)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [contactToDelete, setContactToDelete] = useState(null)
+  
+  const dropdownRef = useRef(null)
+
+  // Cerrar dropdown al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdown(null)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  // Cerrar modales con la tecla Escape
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        closeModals()
+      }
+    }
+
+    if (showEditModal || showDetailsModal || showDeleteConfirm) {
+      document.addEventListener('keydown', handleEscapeKey)
+      return () => {
+        document.removeEventListener('keydown', handleEscapeKey)
+      }
+    }
+  }, [showEditModal, showDetailsModal, showDeleteConfirm])
 
   // Función para manejar cambios en los inputs
   const handleInputChange = (e) => {
@@ -39,7 +78,6 @@ export default function ContactsPage() {
       [name]: value
     }))
     
-    // Limpiar errores cuando el usuario empiece a escribir
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -78,17 +116,29 @@ export default function ContactsPage() {
       return
     }
     
-    // Crear nuevo contacto
-    const newContact = {
-      id: Date.now(), // ID único basado en timestamp
-      name: formData.name.trim(),
-      relation: formData.relation,
-      phone: formData.phone.trim(),
-      avatar: null
+    if (editingContact) {
+      // Actualizar contacto existente
+      setEmergencyContacts(prev => 
+        prev.map(contact => 
+          contact.id === editingContact.id 
+            ? { ...contact, name: formData.name.trim(), relation: formData.relation, phone: formData.phone.trim() }
+            : contact
+        )
+      )
+      setEditingContact(null)
+      setShowEditModal(false)
+    } else {
+      // Crear nuevo contacto
+      const newContact = {
+        id: Date.now(),
+        name: formData.name.trim(),
+        relation: formData.relation,
+        phone: formData.phone.trim(),
+        avatar: null
+      }
+      
+      setEmergencyContacts(prev => [...prev, newContact])
     }
-    
-    // Agregar el nuevo contacto a la lista
-    setEmergencyContacts(prev => [...prev, newContact])
     
     // Limpiar el formulario
     setFormData({
@@ -100,6 +150,73 @@ export default function ContactsPage() {
     // Mostrar mensaje de éxito
     setShowSuccess(true)
     setTimeout(() => setShowSuccess(false), 3000)
+  }
+
+  // Función para abrir el menú desplegable
+  const toggleDropdown = (contactId) => {
+    setActiveDropdown(activeDropdown === contactId ? null : contactId)
+  }
+
+  // Función para editar contacto
+  const handleEditContact = (contact) => {
+    setEditingContact(contact)
+    setFormData({
+      name: contact.name,
+      relation: contact.relation,
+      phone: contact.phone
+    })
+    setShowEditModal(true)
+    setActiveDropdown(null)
+  }
+
+  // Función para eliminar contacto
+  const handleDeleteContact = (contact) => {
+    setContactToDelete(contact)
+    setShowDeleteConfirm(true)
+    setActiveDropdown(null)
+  }
+
+  // Confirmar eliminación
+  const confirmDelete = () => {
+    setEmergencyContacts(prev => prev.filter(contact => contact.id !== contactToDelete.id))
+    setShowDeleteConfirm(false)
+    setContactToDelete(null)
+  }
+
+  // Función para ver detalles
+  const handleViewDetails = (contact) => {
+    setSelectedContact(contact)
+    setShowDetailsModal(true)
+    setActiveDropdown(null)
+  }
+
+  // Cerrar modales - FUNCIÓN MEJORADA
+  const closeModals = () => {
+    setShowEditModal(false)
+    setShowDetailsModal(false)
+    setShowDeleteConfirm(false)
+    setEditingContact(null)
+    setSelectedContact(null)
+    setContactToDelete(null)
+    setActiveDropdown(null)
+    
+    // Solo resetear el formulario si no estamos editando
+    if (!editingContact) {
+      setFormData({ name: '', relation: '', phone: '' })
+    }
+    setErrors({})
+  }
+
+  // Función para manejar click en overlay
+  const handleOverlayClick = (e) => {
+    // Solo cerrar si el click fue directamente en el overlay, no en sus hijos
+    if (e.target === e.currentTarget) {
+      if (showEditModal || showDetailsModal || showDeleteConfirm) {
+        closeModals()
+      } else {
+        setIsMenuOpen(false)
+      }
+    }
   }
 
   return (
@@ -130,9 +247,9 @@ export default function ContactsPage() {
         currentPage="contacts" 
       />
 
-      {/* Overlay */}
-      {isMenuOpen && (
-        <div className="contacts-overlay" onClick={() => setIsMenuOpen(false)} />
+      {/* Overlay - CORREGIDO */}
+      {(isMenuOpen || showEditModal || showDetailsModal || showDeleteConfirm) && (
+        <div className="contacts-overlay" onClick={handleOverlayClick} />
       )}
 
       {/* Header */}
@@ -158,74 +275,233 @@ export default function ContactsPage() {
         {/* Mensaje de éxito */}
         {showSuccess && (
           <div className="contacts-success-message">
-            ✅ Contacto agregado exitosamente
+            ✅ {editingContact ? 'Contacto actualizado' : 'Contacto agregado'} exitosamente
           </div>
         )}
 
         {/* Add Contact Section */}
-        <div className="contacts-add-section">
-          <div className="contacts-add-header">
-            <h3 className="contacts-add-title">
-              <Plus className="contacts-add-icon" />
-              Agregar Contacto
-            </h3>
-            <p className="contacts-add-description">
-              Añade personas de confianza que puedan ayudarte en emergencias
-            </p>
-          </div>
-          
-          <form className="contacts-form" onSubmit={handleSubmit}>
-            <div className="contacts-form-row">
+        {!showEditModal && (
+          <div className="contacts-add-section">
+            <div className="contacts-add-header">
+              <h3 className="contacts-add-title">
+                <Plus className="contacts-add-icon" />
+                Agregar Contacto
+              </h3>
+              <p className="contacts-add-description">
+                Añade personas de confianza que puedan ayudarte en emergencias
+              </p>
+            </div>
+            
+            <form className="contacts-form" onSubmit={handleSubmit}>
+              <div className="contacts-form-row">
+                <div className="contacts-form-group">
+                  <label className="contacts-form-label">Nombre completo</label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className={`contacts-form-input ${errors.name ? 'error' : ''}`}
+                    placeholder="Ej: María González"
+                  />
+                  {errors.name && <span className="contacts-error">{errors.name}</span>}
+                </div>
+                <div className="contacts-form-group">
+                  <label className="contacts-form-label">Relación</label>
+                  <select 
+                    name="relation"
+                    value={formData.relation}
+                    onChange={handleInputChange}
+                    className={`contacts-form-select ${errors.relation ? 'error' : ''}`}
+                  >
+                    <option value="">Seleccionar...</option>
+                    <option value="Familia">Familia</option>
+                    <option value="Amigo/a">Amigo/a</option>
+                    <option value="Vecino/a">Vecino/a</option>
+                    <option value="Colega">Colega</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                  {errors.relation && <span className="contacts-error">{errors.relation}</span>}
+                </div>
+              </div>
+              
               <div className="contacts-form-group">
-                <label className="contacts-form-label">Nombre completo</label>
+                <label className="contacts-form-label">Número de teléfono</label>
                 <input 
-                  type="text" 
-                  name="name"
-                  value={formData.name}
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
                   onChange={handleInputChange}
-                  className={`contacts-form-input ${errors.name ? 'error' : ''}`}
-                  placeholder="Ej: María González"
+                  className={`contacts-form-input ${errors.phone ? 'error' : ''}`}
+                  placeholder="+57 300 123 4567"
                 />
-                {errors.name && <span className="contacts-error">{errors.name}</span>}
+                {errors.phone && <span className="contacts-error">{errors.phone}</span>}
               </div>
-              <div className="contacts-form-group">
-                <label className="contacts-form-label">Relación</label>
-                <select 
-                  name="relation"
-                  value={formData.relation}
-                  onChange={handleInputChange}
-                  className={`contacts-form-select ${errors.relation ? 'error' : ''}`}
-                >
-                  <option value="">Seleccionar...</option>
-                  <option value="Familia">Familia</option>
-                  <option value="Amigo/a">Amigo/a</option>
-                  <option value="Vecino/a">Vecino/a</option>
-                  <option value="Colega">Colega</option>
-                  <option value="Otro">Otro</option>
-                </select>
-                {errors.relation && <span className="contacts-error">{errors.relation}</span>}
+              
+              <button type="submit" className="contacts-add-btn">
+                <Plus className="contacts-add-btn-icon" />
+                Agregar Contacto
+              </button>
+            </form>
+          </div>
+        )}
+
+        {/* Edit Contact Modal - CORREGIDO */}
+        {showEditModal && (
+          <div className="contacts-modal" onClick={handleOverlayClick}>
+            <div className="contacts-modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="contacts-modal-header">
+                <h3 className="contacts-modal-title">
+                  <Edit className="contacts-modal-icon" />
+                  Editar Contacto
+                </h3>
+                <button className="contacts-modal-close" onClick={closeModals}>
+                  ×
+                </button>
+              </div>
+              
+              <form className="contacts-form" onSubmit={handleSubmit}>
+                <div className="contacts-form-row">
+                  <div className="contacts-form-group">
+                    <label className="contacts-form-label">Nombre completo</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className={`contacts-form-input ${errors.name ? 'error' : ''}`}
+                      placeholder="Ej: María González"
+                    />
+                    {errors.name && <span className="contacts-error">{errors.name}</span>}
+                  </div>
+                  <div className="contacts-form-group">
+                    <label className="contacts-form-label">Relación</label>
+                    <select 
+                      name="relation"
+                      value={formData.relation}
+                      onChange={handleInputChange}
+                      className={`contacts-form-select ${errors.relation ? 'error' : ''}`}
+                    >
+                      <option value="">Seleccionar...</option>
+                      <option value="Familia">Familia</option>
+                      <option value="Amigo/a">Amigo/a</option>
+                      <option value="Vecino/a">Vecino/a</option>
+                      <option value="Colega">Colega</option>
+                      <option value="Otro">Otro</option>
+                    </select>
+                    {errors.relation && <span className="contacts-error">{errors.relation}</span>}
+                  </div>
+                </div>
+                
+                <div className="contacts-form-group">
+                  <label className="contacts-form-label">Número de teléfono</label>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className={`contacts-form-input ${errors.phone ? 'error' : ''}`}
+                    placeholder="+57 300 123 4567"
+                  />
+                  {errors.phone && <span className="contacts-error">{errors.phone}</span>}
+                </div>
+                
+                <div className="contacts-modal-actions">
+                  <button type="button" className="contacts-cancel-btn" onClick={closeModals}>
+                    Cancelar
+                  </button>
+                  <button type="submit" className="contacts-save-btn">
+                    <Edit className="contacts-save-btn-icon" />
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Details Modal - CORREGIDO */}
+        {showDetailsModal && selectedContact && (
+          <div className="contacts-modal" onClick={handleOverlayClick}>
+            <div className="contacts-modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="contacts-modal-header">
+                <h3 className="contacts-modal-title">
+                  <Eye className="contacts-modal-icon" />
+                  Detalles del Contacto
+                </h3>
+                <button className="contacts-modal-close" onClick={closeModals}>
+                  ×
+                </button>
+              </div>
+              
+              <div className="contacts-details">
+                <div className="contacts-details-avatar">
+                  {selectedContact.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div className="contacts-details-info">
+                  <div className="contacts-detail-item">
+                    <label>Nombre completo:</label>
+                    <span>{selectedContact.name}</span>
+                  </div>
+                  <div className="contacts-detail-item">
+                    <label>Relación:</label>
+                    <span>{selectedContact.relation}</span>
+                  </div>
+                  <div className="contacts-detail-item">
+                    <label>Teléfono:</label>
+                    <span>{selectedContact.phone}</span>
+                  </div>
+                  <div className="contacts-detail-item">
+                    <label>Agregado:</label>
+                    <span>Hace 2 semanas</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="contacts-modal-actions">
+                <button className="contacts-cancel-btn" onClick={closeModals}>
+                  Cerrar
+                </button>
+                <button className="contacts-call-btn" onClick={() => window.open(`tel:${selectedContact.phone}`)}>
+                  <Phone className="contacts-call-icon" />
+                  Llamar
+                </button>
               </div>
             </div>
-            
-            <div className="contacts-form-group">
-              <label className="contacts-form-label">Número de teléfono</label>
-              <input 
-                type="tel" 
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className={`contacts-form-input ${errors.phone ? 'error' : ''}`}
-                placeholder="+57 300 123 4567"
-              />
-              {errors.phone && <span className="contacts-error">{errors.phone}</span>}
+          </div>
+        )}
+
+        {/* Delete Confirmation Modal - CORREGIDO */}
+        {showDeleteConfirm && contactToDelete && (
+          <div className="contacts-modal" onClick={handleOverlayClick}>
+            <div className="contacts-modal-content contacts-delete-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="contacts-modal-header">
+                <h3 className="contacts-modal-title contacts-delete-title">
+                  <Trash2 className="contacts-modal-icon contacts-delete-icon" />
+                  Eliminar Contacto
+                </h3>
+                <button className="contacts-modal-close" onClick={closeModals}>
+                  ×
+                </button>
+              </div>
+              
+              <div className="contacts-delete-content">
+                <p>¿Estás seguro de que deseas eliminar a <strong>{contactToDelete.name}</strong> de tus contactos de emergencia?</p>
+                <p className="contacts-delete-warning">Esta acción no se puede deshacer.</p>
+              </div>
+              
+              <div className="contacts-modal-actions">
+                <button className="contacts-cancel-btn" onClick={closeModals}>
+                  Cancelar
+                </button>
+                <button className="contacts-delete-btn" onClick={confirmDelete}>
+                  <Trash2 className="contacts-delete-btn-icon" />
+                  Eliminar
+                </button>
+              </div>
             </div>
-            
-            <button type="submit" className="contacts-add-btn">
-              <Plus className="contacts-add-btn-icon" />
-              Agregar Contacto
-            </button>
-          </form>
-        </div>
+          </div>
+        )}
 
         {/* Contacts List Section */}
         <div className="contacts-list-section">
@@ -262,12 +538,42 @@ export default function ContactsPage() {
                     </div>
                   </div>
                   <div className="contacts-item-actions">
-                    <button className="contacts-action-btn contacts-call-btn">
+                    <button className="contacts-action-btn contacts-call-btn" onClick={() => window.open(`tel:${contact.phone}`)}>
                       <Phone className="contacts-action-icon" />
                     </button>
-                    <button className="contacts-action-btn">
-                      <Settings className="contacts-action-icon" />
-                    </button>
+                    <div className="contacts-dropdown" ref={activeDropdown === contact.id ? dropdownRef : null}>
+                      <button 
+                        className="contacts-action-btn contacts-settings-btn" 
+                        onClick={() => toggleDropdown(contact.id)}
+                      >
+                        <Settings className="contacts-action-icon" />
+                      </button>
+                      {activeDropdown === contact.id && (
+                        <div className="contacts-dropdown-menu">
+                          <button 
+                            className="contacts-dropdown-item"
+                            onClick={() => handleEditContact(contact)}
+                          >
+                            <Edit className="contacts-dropdown-icon" />
+                            Modificar contacto
+                          </button>
+                          <button 
+                            className="contacts-dropdown-item"
+                            onClick={() => handleViewDetails(contact)}
+                          >
+                            <Eye className="contacts-dropdown-icon" />
+                            Ver detalles
+                          </button>
+                          <button 
+                            className="contacts-dropdown-item contacts-dropdown-delete"
+                            onClick={() => handleDeleteContact(contact)}
+                          >
+                            <Trash2 className="contacts-dropdown-icon" />
+                            Eliminar contacto
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))

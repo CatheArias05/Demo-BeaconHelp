@@ -453,9 +453,9 @@ const SettingsPage = () => {
           <div className="settings-header">
             <div className="logo-section">
               <img 
-                src="/images/logo.png" 
+                src="/images/beacon-logo.png" 
                 alt="BeaconHelp Logo" 
-                className="logo"
+                className="settings-logo"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';

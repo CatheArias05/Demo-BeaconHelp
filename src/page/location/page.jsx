@@ -1,9 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Menu, X, MapPin, Navigation, Bell, Users, Settings, User, LogOut, Plus, Phone, AlertTriangle, Clock, Search, Filter, Shield, RefreshCw, Crosshair } from "lucide-react"
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
@@ -271,12 +268,18 @@ const LocationPage = () => {
         <div className="location-content">
           <div className="location-header">
             <div className="logo-section">
-              <div className="logo">
-                <Shield className="shield-icon" />
-              </div>
-              <div>
-                <h1>Ubicaciones de Emergencia</h1>
-                <p>Encuentra servicios de emergencia cercanos a tu ubicación</p>
+              <div className="logo-header">
+                <div className="logo">
+                  <img 
+                    src="/images/beacon-logo.png" 
+                    alt="BeaconHelp Logo" 
+                    className="logo-img"
+                  />
+                </div>
+                <div>
+                  <h1>Ubicaciones de Emergencia</h1>
+                  <p>Encuentra servicios de emergencia cercanos a tu ubicación</p>
+                </div>
               </div>
             </div>
           </div>
@@ -425,10 +428,13 @@ const LocationPage = () => {
             </div>
             
             <div className="map-section">
-              <InteractiveMap 
-                emergencyLocations={filteredLocations}
-                userLocation={userLocation}
-              />
+              <div className="map-container">
+                <InteractiveMap 
+                  emergencyLocations={filteredLocations}
+                  userLocation={userLocation}
+                  className="emergency-map"
+                />
+              </div>
             </div>
           </div>
 
