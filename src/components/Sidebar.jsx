@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Shield, Users, BookOpen, FileText, MapPin, Settings, X } from 'lucide-react'
+import { Shield, Users, BookOpen, FileText, MapPin, Settings, GraduationCap, X } from 'lucide-react'
 import '../styles/Sidebar.css'
 
 const Sidebar = ({ isMenuOpen, setIsMenuOpen, currentPage }) => {
@@ -9,6 +9,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen, currentPage }) => {
   const menuItems = [
     { icon: Shield, label: "Inicio", path: "/", key: "home" },
     { icon: Users, label: "Contactos de Emergencia", path: "/contacts", key: "contacts" },
+    { icon: GraduationCap, label: "Educación", path: "/education", key: "education" },
     { icon: BookOpen, label: "Recursos de Apoyo", path: "/resources", key: "resources" },
     { icon: FileText, label: "Mis Reportes", path: "/reports", key: "reports" },
     { icon: MapPin, label: "Mi Ubicación", path: "/location", key: "location" },
