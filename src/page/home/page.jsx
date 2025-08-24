@@ -6,7 +6,7 @@ import FloatingAIWidget from '../../components/FloatingAIWidget'
 import CustomAlert from '../../components/CustomAlert'
 import Footer from '../../components/Footer'
 import BackgroundParticles from '../../components/BackgroundParticles'
-import { Shield, AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin } from 'lucide-react'
+import { Shield, AlertTriangle, Users, Heart, Phone, PhoneCall, MessageCircle, MapPin, BookOpen, LifeBuoy, FileText, Settings, Navigation, MousePointer2 } from 'lucide-react'
 import '../../styles/Home.css'
 
 const Home = () => {
@@ -341,6 +341,67 @@ const Home = () => {
                 </button>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Quick Navigation Section */}
+        <div className="section-card">
+          <div className="section-header">
+            <h3 className="section-title">
+              <Navigation className="section-icon" />
+              Navegación Rápida
+            </h3>
+            <p className="section-description">Haz clic en cualquier tarjeta para acceder rápidamente a las funciones de BeaconHelp</p>
+          </div>
+          <div className="quick-navigation">
+            <button className="nav-card" onClick={() => navigate('/contacts')}>
+               <Users className="nav-icon" />
+               <div className="nav-content">
+                 <h4 className="nav-title">Contactos de Emergencia</h4>
+                 <p className="nav-description">Gestiona tus contactos de confianza</p>
+               </div>
+               <MousePointer2 className="nav-arrow" />
+             </button>
+            <button className="nav-card" onClick={() => navigate('/education')}>
+               <BookOpen className="nav-icon" />
+               <div className="nav-content">
+                 <h4 className="nav-title">Educación</h4>
+                 <p className="nav-description">Aprende sobre prevención y seguridad</p>
+               </div>
+               <MousePointer2 className="nav-arrow" />
+             </button>
+             <button className="nav-card" onClick={() => navigate('/resources')}>
+               <LifeBuoy className="nav-icon" />
+               <div className="nav-content">
+                 <h4 className="nav-title">Recursos de Apoyo</h4>
+                 <p className="nav-description">Encuentra ayuda y orientación</p>
+               </div>
+               <MousePointer2 className="nav-arrow" />
+             </button>
+             <button className="nav-card" onClick={() => navigate('/reports')}>
+               <FileText className="nav-icon" />
+               <div className="nav-content">
+                 <h4 className="nav-title">Reportes</h4>
+                 <p className="nav-description">Realiza denuncias de forma segura</p>
+               </div>
+               <MousePointer2 className="nav-arrow" />
+             </button>
+             <button className="nav-card" onClick={() => navigate('/location')}>
+               <MapPin className="nav-icon" />
+               <div className="nav-content">
+                 <h4 className="nav-title">Ubicación</h4>
+                 <p className="nav-description">Comparte tu ubicación en emergencias</p>
+               </div>
+               <MousePointer2 className="nav-arrow" />
+             </button>
+             <button className="nav-card" onClick={() => navigate('/settings')}>
+               <Settings className="nav-icon" />
+               <div className="nav-content">
+                 <h4 className="nav-title">Configuración</h4>
+                 <p className="nav-description">Personaliza tu experiencia</p>
+               </div>
+               <MousePointer2 className="nav-arrow" />
+             </button>
           </div>
         </div>
       </div>
