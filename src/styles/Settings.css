@@ -670,11 +670,11 @@ input:checked + .slider:before {
 
 /* Contenedor principal */
 [data-theme="dark"] .settings-container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background: transparent;
 }
 
 [data-theme="dark"] .settings-container::before {
-  background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  background: transparent;
 }
 
 /* Header */
@@ -700,7 +700,7 @@ input:checked + .slider:before {
 
 /* Sidebar de navegación */
 [data-theme="dark"] .settings-sidebar {
-  background: rgba(15, 23, 42, 0.8);
+  background: transparent;
   border: 1px solid rgba(59, 130, 246, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
@@ -726,13 +726,13 @@ input:checked + .slider:before {
 
 /* Área principal de contenido */
 [data-theme="dark"] .settings-main {
-  background: rgba(15, 23, 42, 0.8);
+  background: transparent;
   border: 1px solid rgba(59, 130, 246, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .settings-content-area {
-  background: rgba(15, 23, 42, 0.6);
+  background: transparent;
 }
 
 /* Títulos de sección */
