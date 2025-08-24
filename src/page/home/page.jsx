@@ -203,20 +203,6 @@ const Home = () => {
     <>
     <BackgroundParticles />
     <div className="home-container">
-      {/* Background Animation */}
-      <div className="background-animation">
-        <div className="floating-icons">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="floating-icon" style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-            }}>
-              <Shield className="shield-icon" />
-            </div>
-          ))}
-        </div>
-      </div>
 
       <Sidebar 
         isMenuOpen={isMenuOpen} 

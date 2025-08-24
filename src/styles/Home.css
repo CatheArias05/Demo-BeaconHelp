@@ -959,11 +959,7 @@
 
 /* Contenedor principal */
 [data-theme="dark"] .home-container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-}
-
-[data-theme="dark"] .home-container::before {
-  background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  background: transparent;
 }
 
 /* Header y logo */
