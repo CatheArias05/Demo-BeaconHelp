@@ -181,13 +181,11 @@ export default function EducationPage() {
                 </div>
               </div>
               <div className="content-image">
-                {/* PLACEHOLDER PARA IMAGEN: Buscar una imagen que represente el acoso o bullying.
-                    Sugerencias: ilustración de una persona siendo intimidada, 
-                    señales de stop, o una representación visual del acoso */}
-                <div className="image-placeholder">
-                  <AlertTriangle className="placeholder-icon" />
-                  <p className="placeholder-text">Imagen sobre acoso y señales de alerta</p>
-                </div>
+                <img 
+                  src="/images/acoso-y-señales.png" 
+                  alt="Acoso y señales de alerta" 
+                  className="section-image"
+                />
               </div>
             </div>
             
@@ -290,13 +288,11 @@ export default function EducationPage() {
                 </div>
               </div>
               <div className="content-image">
-                {/* PLACEHOLDER PARA IMAGEN: Buscar una imagen que represente la protección contra la violencia.
-                    Sugerencias: escudo protector, manos en señal de alto, 
-                    ilustración de una persona sintiéndose protegida */}
-                <div className="image-placeholder">
-                  <Shield className="placeholder-icon" />
-                  <p className="placeholder-text">Imagen sobre protección contra la violencia</p>
-                </div>
+                <img 
+                  src="/images/proteccion-violencia.png" 
+                  alt="Protección contra la violencia" 
+                  className="section-image"
+                />
               </div>
             </div>
             
@@ -516,6 +512,26 @@ export default function EducationPage() {
                     </div>
                   </div>
               </div>
+              
+              <div className="testimonial-card">
+                <div className="testimonial-image">
+                  {/* PLACEHOLDER PARA IMAGEN: Buscar una imagen de una persona joven.
+                      Sugerencias: avatar masculino joven, silueta de hombre joven */}
+                  <div className="image-placeholder small">
+                    <div className="avatar-placeholder">👤</div>
+                  </div>
+                </div>
+                <div className="testimonial-content">
+                    <p className="testimonial-text">
+                      "Mi familia me ayudó a salir de una relación tóxica. 
+                      Con terapia y apoyo, recuperé mi autoestima y confianza."
+                    </p>
+                    <div className="testimonial-author">
+                      <span className="author-name">Luis, 24 años</span>
+                      <span className="author-location">Manizales, Caldas</span>
+                    </div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
@@ -530,40 +546,37 @@ export default function EducationPage() {
             <p className="section-description">Contactos importantes para situaciones de crisis</p>
           </div>
           <div className="education-content">
-            <div className="emergency-layout">
-              <div className="emergency-contacts">
-                <div className="emergency-contact priority">
-                  <div className="contact-icon">🚨</div>
+            <div className="emergency-contacts">
+              <div className="emergency-contact priority">
+                <div className="contact-icon">🚨</div>
+                <div className="contact-info">
                   <h4 className="contact-title">Emergencias Inmediatas</h4>
                   <p className="contact-number">📞 123</p>
                   <p className="contact-description">Policía Nacional - Para situaciones de peligro inmediato</p>
                 </div>
-                <div className="emergency-contact">
-                  <div className="contact-icon">💬</div>
+              </div>
+              <div className="emergency-contact">
+                <div className="contact-icon">💬</div>
+                <div className="contact-info">
                   <h4 className="contact-title">Línea Nacional Contra la Violencia</h4>
                   <p className="contact-number">📞 155</p>
                   <p className="contact-description">Disponible 24/7, confidencial y gratuito</p>
                 </div>
-                <div className="emergency-contact">
-                  <div className="contact-icon">👩</div>
+              </div>
+              <div className="emergency-contact">
+                <div className="contact-icon">👩</div>
+                <div className="contact-info">
                   <h4 className="contact-title">Línea Mujer Caldas</h4>
                   <p className="contact-number">📞 (606) 878-1360</p>
                   <p className="contact-description">Atención especializada para mujeres en Caldas</p>
                 </div>
-                <div className="emergency-contact">
-                  <div className="contact-icon">🏥</div>
+              </div>
+              <div className="emergency-contact">
+                <div className="contact-icon">🏥</div>
+                <div className="contact-info">
                   <h4 className="contact-title">Línea de Salud Mental</h4>
                   <p className="contact-number">📞 106</p>
                   <p className="contact-description">Apoyo psicológico y referencias en Colombia</p>
-                </div>
-              </div>
-              <div className="emergency-image">
-                {/* PLACEHOLDER PARA IMAGEN: Buscar una imagen que represente ayuda de emergencia.
-                    Sugerencias: teléfono de emergencia, manos ayudando, 
-                    cruz roja, símbolo de ayuda */}
-                <div className="image-placeholder">
-                  <Phone className="placeholder-icon" />
-                  <p className="placeholder-text">Imagen de líneas de ayuda y emergencia</p>
                 </div>
               </div>
             </div>
