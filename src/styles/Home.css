@@ -1,16 +1,11 @@
 .home-container {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 40;
-}
+/* Overlay removido para permitir visibilidad de BackgroundParticles */
 
 .main-content {
   padding-top: 80px;
@@ -958,10 +953,7 @@
   color: #94a3b8;
 }
 
-/* Overlay */
-[data-theme="dark"] .overlay {
-  background: rgba(0, 0, 0, 0.7);
-}
+
 
 /* Main content */
 [data-theme="dark"] .main-content {

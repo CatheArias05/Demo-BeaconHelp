@@ -6,7 +6,7 @@
 }
 
 [data-theme="dark"] .location-container {
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 .location-container::before {
@@ -67,12 +67,7 @@
 }
 
 /* Overlay */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 40;
-}
+
 
 /* Main Content */
 .main-content {

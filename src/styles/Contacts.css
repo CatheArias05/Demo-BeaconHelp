@@ -1,6 +1,6 @@
 .contacts-container {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -104,12 +104,17 @@
 
 .contacts-add-section {
   margin-bottom: 24px;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .contacts-add-section {
+  background: rgba(45, 55, 72, 0.9);
+  border: 1px solid var(--border-color);
 }
 
 .contacts-add-header {

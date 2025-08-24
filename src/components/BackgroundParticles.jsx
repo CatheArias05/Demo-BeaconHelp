@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react'
+import { useTheme } from '../contexts/ThemeContext'
 import '../styles/BackgroundParticles.css'
 
 const BackgroundParticles = () => {
+  const { isDarkMode } = useTheme()
   const canvasRef = useRef(null)
   const particlesRef = useRef([])
   const mouseRef = useRef({ x: 0, y: 0 })
@@ -66,7 +68,7 @@ const BackgroundParticles = () => {
       if (particle.type === 'helix') {
         // Dibujar icono de escudo
         const scale = particle.size / 24
-        ctx.strokeStyle = '#475569'
+        ctx.strokeStyle = isDarkMode ? '#94a3b8' : '#475569'
         ctx.lineWidth = 2
         ctx.fillStyle = 'none'
         
@@ -87,8 +89,8 @@ const BackgroundParticles = () => {
         ctx.closePath()
         ctx.stroke()
       } else {
-        ctx.fillStyle = '#94a3b8'
-        ctx.strokeStyle = '#475569'
+        ctx.fillStyle = isDarkMode ? '#64748b' : '#94a3b8'
+        ctx.strokeStyle = isDarkMode ? '#94a3b8' : '#475569'
         ctx.lineWidth = 1
 
         const radius = particle.size * 0.15

@@ -443,124 +443,125 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="settings-container">
-      {/* Background Animation */}
-      <div className="background-animation">
-        <div className="floating-icons">
-          <Settings className="floating-icon" />
-          <User className="floating-icon" />
-          <Bell className="floating-icon" />
-          <Shield className="floating-icon" />
-          <Lock className="floating-icon" />
+    <>
+      <div className="settings-container">
+        {/* Background Animation */}
+        <div className="background-animation">
+          <div className="floating-icons">
+            <Settings className="floating-icon" />
+            <User className="floating-icon" />
+            <Bell className="floating-icon" />
+            <Shield className="floating-icon" />
+            <Lock className="floating-icon" />
+          </div>
         </div>
-      </div>
 
-      {/* Overlay */}
-      <div className="overlay"></div>
-      
-      <Sidebar 
-        currentPage="settings" 
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen} 
-      />
-      
-      <div className="main-content">
-        <Header 
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-          isUserMenuOpen={isUserMenuOpen}
-          setIsUserMenuOpen={setIsUserMenuOpen}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
+        
+        <Sidebar 
+          currentPage="settings" 
+          isMenuOpen={isMenuOpen} 
+          setIsMenuOpen={setIsMenuOpen} 
         />
         
-        <div className="settings-content">
-          <div className="settings-header">
-            <div className="logo-section">
-              <img 
-                src="/images/beacon-logo.png" 
-                alt="BeaconHelp Logo" 
-                className="settings-logo"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-              <div className="logo-fallback" style={{display: 'none'}}>
-                <Settings size={48} />
+        <div className="main-content">
+          <Header 
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+            isUserMenuOpen={isUserMenuOpen}
+            setIsUserMenuOpen={setIsUserMenuOpen}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+          
+          <div className="settings-content">
+            <div className="settings-header">
+              <div className="logo-section">
+                <img 
+                  src="/images/beacon-logo.png" 
+                  alt="BeaconHelp Logo" 
+                  className="settings-logo"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="logo-fallback" style={{display: 'none'}}>
+                  <Settings size={48} />
+                </div>
               </div>
+              <h1>Configuración</h1>
+              <p>Personaliza tu experiencia y preferencias</p>
             </div>
-            <h1>Configuración</h1>
-            <p>Personaliza tu experiencia y preferencias</p>
-          </div>
 
-          <div className="settings-layout">
-            <div className="settings-sidebar">
-              <nav className="settings-nav">
-                {tabs.map(tab => {
-                  const IconComponent = tab.icon;
-                  return (
-                    <button
-                      key={tab.id}
-                      className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
-                      onClick={() => setActiveTab(tab.id)}
-                    >
-                      <IconComponent size={20} />
-                      {tab.name}
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
-            
-            <div className="settings-main">
-              <div className="settings-content-area">
-                {renderTabContent()}
-                
-                <div className="settings-actions">
-                  <button 
-                    className="save-btn"
-                    onClick={handleSave}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? (
-                      <>
-                        <RefreshCw size={20} className="spinning" />
-                        Guardando...
-                      </>
-                    ) : (
-                      <>
-                        <Save size={20} />
-                        Guardar Cambios
-                      </>
-                    )}
-                  </button>
+            <div className="settings-layout">
+              <div className="settings-sidebar">
+                <nav className="settings-nav">
+                  {tabs.map(tab => {
+                    const IconComponent = tab.icon;
+                    return (
+                      <button
+                        key={tab.id}
+                        className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
+                        onClick={() => setActiveTab(tab.id)}
+                      >
+                        <IconComponent size={20} />
+                        {tab.name}
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+              
+              <div className="settings-main">
+                <div className="settings-content-area">
+                  {renderTabContent()}
                   
-                  <button className="reset-btn">
-                    <RefreshCw size={20} />
-                    Restablecer
-                  </button>
+                  <div className="settings-actions">
+                    <button 
+                      className="save-btn"
+                      onClick={handleSave}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <RefreshCw size={20} className="spinning" />
+                          Guardando...
+                        </>
+                      ) : (
+                        <>
+                          <Save size={20} />
+                          Guardar Cambios
+                        </>
+                      )}
+                    </button>
+                    
+                    <button className="reset-btn">
+                      <RefreshCw size={20} />
+                      Restablecer
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
+        <BackgroundParticles />
+        
+        <FloatingAIWidget />
+        
+        <CustomAlert
+          isVisible={alert.isVisible}
+          type={alert.type}
+          title={alert.title}
+          message={alert.message}
+          onClose={closeAlert}
+        />
+        
       </div>
       
-      <BackgroundParticles />
-      
-      <FloatingAIWidget />
-      
-      <CustomAlert
-        isVisible={alert.isVisible}
-        type={alert.type}
-        title={alert.title}
-        message={alert.message}
-        onClose={closeAlert}
-      />
-      
       <Footer />
-    </div>
+    </>
   );
 };
 

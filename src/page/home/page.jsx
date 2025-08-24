@@ -224,7 +224,7 @@ const Home = () => {
         currentPage="home"
       />
 
-      {isMenuOpen && <div className="overlay" onClick={() => setIsMenuOpen(false)} />}
+
 
       <Header 
         isMenuOpen={isMenuOpen}

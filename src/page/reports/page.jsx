@@ -105,7 +105,7 @@ export default function ReportsPage() {
       />
 
       {/* Overlay para cerrar el sidebar */}
-      {isMenuOpen && <div className="overlay" onClick={() => setIsMenuOpen(false)} />}
+
 
       <Header 
         isMenuOpen={isMenuOpen}

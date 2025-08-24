@@ -1,6 +1,6 @@
 .resources-container {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -29,12 +29,7 @@
   opacity: 0.2;
 }
 
-.resources-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 40;
-}
+/* Overlay removido para permitir visibilidad de BackgroundParticles */
 
 .resources-main-content {
   padding-top: 80px;
@@ -99,11 +94,18 @@
 
 /* Sección de emergencia */
 .resources-emergency-section {
-  margin-bottom: 24px;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 24px;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .resources-emergency-section {
+  background: rgba(45, 55, 72, 0.1);
+  backdrop-filter: blur(20px);
 }
 
 .resources-emergency-title {
@@ -150,11 +152,18 @@
 
 /* Sección de apoyo psicológico */
 .resources-support-section {
-  margin-bottom: 24px;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 24px;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .resources-support-section {
+  background: rgba(45, 55, 72, 0.1);
+  backdrop-filter: blur(20px);
 }
 
 .resources-support-title {
