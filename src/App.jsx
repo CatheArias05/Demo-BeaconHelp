@@ -4,6 +4,7 @@ import { ThemeProvider } from './contexts/ThemeContext'
 import Home from './page/home/page'
 import ContactsPage from './page/contacts/page'
 import ResourcesPage from './page/resources/page'
+import EducationPage from './page/education/page'
 import ReportsPage from './page/reports/page'
 import LocationPage from './page/location/page'
 import SettingsPage from './page/settings/page'
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/education" element={<EducationPage />} />
             <Route path="/reports" element={<ReportsPage />} />
             <Route path="/location" element={<LocationPage />} />
             <Route path="/settings" element={<SettingsPage />} />
