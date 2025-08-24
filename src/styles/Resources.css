@@ -1,10 +1,6 @@
 .resources-container {
   min-height: 100vh;
-<<<<<<< HEAD
   background: var(--bg-primary);
-=======
-  background: transparent;
->>>>>>> 528ff1174c9072a7dd75a19690f419a4b4b9657c
   position: relative;
   overflow: hidden;
 }

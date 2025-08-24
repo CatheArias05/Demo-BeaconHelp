@@ -372,7 +372,6 @@ body, html {
   color: #2563eb;
 }
 
-<<<<<<< HEAD
 /* ===== ESTILOS MODO OSCURO PARA REGISTRO ===== */
 
 /* Contenedor principal */
@@ -488,7 +487,8 @@ body, html {
 
 [data-theme="dark"] .login-link:hover {
   color: #3b82f6;
-=======
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .register-content {
@@ -567,5 +567,4 @@ body, html {
   .mobile-logo {
     display: none;
   }
->>>>>>> 528ff1174c9072a7dd75a19690f419a4b4b9657c
 }
