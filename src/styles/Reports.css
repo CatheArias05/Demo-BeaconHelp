@@ -24,12 +24,14 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
+  background: transparent;
 }
 
 .floating-icons {
   position: absolute;
   inset: 0;
   opacity: 0.03;
+  background: transparent;
 }
 
 .floating-icon {
@@ -196,7 +198,7 @@
 }
 
 .report-card {
-  background: var(--bg-card);
+  background: transparent;
   border: 1px solid var(--gray-200);
   border-radius: var(--border-radius-lg);
   transition: all 0.3s ease;
@@ -394,7 +396,7 @@
 
 /* Estilos de modo oscuro para uniformidad con home, sidebar y contacts */
 [data-theme="dark"] .reports-container {
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 [data-theme="dark"] .reports-container::before {
@@ -435,7 +437,7 @@
 }
 
 [data-theme="dark"] .report-card {
-  background: rgba(45, 55, 72, 0.95);
+  background: transparent;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -485,7 +487,7 @@
 }
 
 [data-theme="dark"] .action-btn {
-  background: rgba(45, 55, 72, 0.95);
+  background: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   backdrop-filter: blur(10px);

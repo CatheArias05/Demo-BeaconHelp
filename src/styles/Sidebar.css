@@ -227,5 +227,16 @@
 }
 
 [data-theme="dark"] .nav-icon {
-  color: inherit !important;
+  color: #f8fafc !important;
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .nav-item:hover .nav-icon {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+[data-theme="dark"] .nav-item-active .nav-icon {
+  color: #667eea !important;
+  opacity: 1;
 }

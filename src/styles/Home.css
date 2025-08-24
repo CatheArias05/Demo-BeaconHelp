@@ -7,6 +7,31 @@
 
 /* Overlay removido para permitir visibilidad de BackgroundParticles */
 
+/* Hacer completamente transparentes los elementos de animación de fondo */
+.background-animation {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.floating-icons {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.floating-icon {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .main-content {
   padding-top: 80px;
   padding-bottom: 24px;
@@ -331,7 +356,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--card-bg);
+  background: transparent;
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -400,7 +425,7 @@
 /* Tarjetas de sección con tema gris profesional */
 .section-card {
   margin-bottom: 24px;
-  background: var(--card-bg);
+  background: transparent;
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -440,7 +465,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: var(--card-bg);
+  background: transparent;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   transition: all 0.2s ease;
@@ -554,7 +579,7 @@
 .footer {
   position: relative;
   z-index: 10;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+  background: transparent;
   backdrop-filter: blur(20px);
   border-top: 1px solid rgba(59, 130, 246, 0.15);
   margin-top: 24px;
@@ -722,7 +747,7 @@
 
 /* Estilos para modo oscuro del footer */
 [data-theme="dark"] .footer {
-  background: linear-gradient(135deg, rgba(45, 55, 72, 0.95) 0%, rgba(26, 32, 44, 0.98) 100%);
+  background: transparent;
   border-top: 1px solid var(--border-color);
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
 }
@@ -776,7 +801,7 @@
   align-items: center;
   gap: 16px;
   padding: 20px;
-  background: var(--card-bg);
+  background: transparent;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -922,7 +947,7 @@
 
 /* Dark theme styles for Quick Navigation */
 [data-theme="dark"] .nav-card {
-  background: var(--card-bg);
+  background: transparent;
   border-color: var(--border-color);
 }
 
@@ -1068,7 +1093,7 @@
 
 /* Tarjetas de sección */
 [data-theme="dark"] .section-card {
-  background: rgba(15, 23, 42, 0.8);
+  background: transparent;
   border: 1px solid rgba(59, 130, 246, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
@@ -1196,7 +1221,7 @@
 /* Tarjetas de sección con tema gris profesional */
 .section-card {
   margin-bottom: 24px;
-  background: var(--card-bg);
+  background: transparent;
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -1236,7 +1261,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: var(--card-bg);
+  background: transparent;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   transition: all 0.2s ease;
@@ -1518,7 +1543,7 @@
 
 /* Estilos para modo oscuro del footer */
 [data-theme="dark"] .footer {
-  background: linear-gradient(135deg, rgba(45, 55, 72, 0.95) 0%, rgba(26, 32, 44, 0.98) 100%);
+  background: transparent;
   border-top: 1px solid var(--border-color);
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
 }

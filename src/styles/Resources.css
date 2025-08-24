@@ -9,12 +9,14 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
+  background: transparent;
 }
 
 .resources-floating-icons {
   position: absolute;
   inset: 0;
   opacity: 0.03;
+  background: transparent;
 }
 
 .resources-floating-icon {
@@ -94,7 +96,7 @@
 
 /* Sección de emergencia */
 .resources-emergency-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border-radius: 16px;
   padding: 32px;
   margin-bottom: 32px;
@@ -129,7 +131,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: var(--bg-primary);
+  background: transparent;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   transition: all 0.2s ease;
@@ -152,7 +154,7 @@
 
 /* Sección de apoyo psicológico */
 .resources-support-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border-radius: 16px;
   padding: 32px;
   margin-bottom: 32px;
@@ -187,7 +189,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: var(--bg-primary);
+  background: transparent;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   transition: all 0.2s ease;
@@ -211,7 +213,7 @@
 /* Sección de asistente legal */
 .resources-legal-section {
   margin-bottom: 24px;
-  background: var(--card-bg);  /* ✅ Usa variables de tema */
+  background: transparent;
   border: 1px solid var(--border-color);  /* ✅ Usa variables de tema */
   border-radius: 8px;
   padding: 24px;
@@ -226,7 +228,7 @@
 }
 
 .resources-legal-item {
-  background: var(--bg-primary);  /* ✅ Usa variables de tema */
+  background: transparent;  /* ✅ Usa variables de tema */
   border: 1px solid var(--border-color);  /* ✅ Usa variables de tema */
 }
 
@@ -259,10 +261,23 @@
   margin: 0;
 }
 
+/* Listas de recursos con espaciado */
+.resources-emergency-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resources-support-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .resources-legal-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .resources-legal-item {
@@ -270,7 +285,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background: var(--bg-primary);  /* Cambiar de white */
+  background: transparent;
   border-radius: 8px;
   border: 1px solid var(--border-color);  /* Cambiar de rgba(0, 0, 0, 0.05) */
   transition: all 0.2s ease;
@@ -286,7 +301,8 @@
 /* Corregir color de la descripción */
 .resources-legal-description {
   font-size: 14px;
-  color: var(--text-secondary);  /* Cambiar de #64748b */
+  color: var(--text-primary);
+  opacity: 0.8;
   margin: 0;
 }
 
@@ -308,7 +324,7 @@
 .resources-legal-name {
   font-weight: 500;
   margin: 0 0 4px 0;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .resources-legal-details {
@@ -330,7 +346,7 @@
 
 .resources-legal-availability {
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 /* Estilos base para botones de emergencia */
@@ -410,7 +426,7 @@
 
 /* Estilos de modo oscuro para uniformidad con home y sidebar */
 [data-theme="dark"] .resources-container {
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 [data-theme="dark"] .resources-title {
@@ -435,9 +451,9 @@
 [data-theme="dark"] .resources-emergency-card,
 [data-theme="dark"] .resources-support-card,
 [data-theme="dark"] .resources-legal-card {
-  background: rgba(45, 55, 72, 0.95);
+  background: transparent;
   border: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -459,9 +475,9 @@
 [data-theme="dark"] .resources-emergency-item,
 [data-theme="dark"] .resources-support-item,
 [data-theme="dark"] .resources-legal-item {
-  background: rgba(45, 55, 72, 0.95);
+  background: transparent;
   border: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
 }
 
 [data-theme="dark"] .resources-emergency-item:hover,
@@ -489,6 +505,20 @@
 [data-theme="dark"] .resources-support-availability,
 [data-theme="dark"] .resources-legal-availability {
   color: var(--text-secondary);
+}
+
+[data-theme="dark"] .resources-emergency-name,
+[data-theme="dark"] .resources-support-name,
+[data-theme="dark"] .resources-legal-name {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .resources-emergency-description,
+[data-theme="dark"] .resources-support-description,
+[data-theme="dark"] .resources-legal-description {
+  color: var(--text-primary);
+  opacity: 0.9;
 }
 
 [data-theme="dark"] .resources-emergency-call-btn {
