@@ -137,6 +137,14 @@
   font-weight: 500;
 }
 
+[data-theme="dark"] .hero-title {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .hero-description {
+  color: #cbd5e1;
+}
+
 .hero-stats {
   display: flex;
   justify-content: center;
@@ -1155,4 +1163,133 @@
   .author-location {
     font-size: 0.85rem;
   }
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] .education-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .education-subtitle {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .section-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .section-description {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .subsection-title {
+  color: #f1f5f9;
+  border-bottom-color: #334155;
+}
+
+[data-theme="dark"] .violence-cycle h4 {
+  color: #f1f5f9;
+}
+
+/* Dark mode card backgrounds */
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .violence-type,
+[data-theme="dark"] .prevention-item,
+[data-theme="dark"] .safety-step,
+[data-theme="dark"] .harassment-item,
+[data-theme="dark"] .emergency-contact,
+[data-theme="dark"] .cycle-step {
+  background: rgba(45, 55, 72, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .info-card:hover,
+[data-theme="dark"] .violence-type:hover,
+[data-theme="dark"] .prevention-item:hover,
+[data-theme="dark"] .safety-step:hover,
+[data-theme="dark"] .harassment-item:hover,
+[data-theme="dark"] .emergency-contact:hover,
+[data-theme="dark"] .cycle-step:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode text colors inside cards */
+[data-theme="dark"] .info-title,
+[data-theme="dark"] .violence-title,
+[data-theme="dark"] .prevention-title,
+[data-theme="dark"] .step-title,
+[data-theme="dark"] .harassment-item h5,
+[data-theme="dark"] .contact-title,
+[data-theme="dark"] .cycle-step h5 {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .info-text,
+[data-theme="dark"] .violence-description,
+[data-theme="dark"] .prevention-text,
+[data-theme="dark"] .step-text,
+[data-theme="dark"] .harassment-item p,
+[data-theme="dark"] .contact-description,
+[data-theme="dark"] .cycle-step p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .info-list {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .contact-number {
+  color: #60a5fa;
+}
+
+/* Dark mode stat items */
+[data-theme="dark"] .stat-item {
+  background: rgba(45, 55, 72, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .stat-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .stat-label {
+  color: #94a3b8;
+}
+
+/* Dark mode testimonials */
+[data-theme="dark"] .testimonial-card {
+  background: rgba(45, 55, 72, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .testimonial-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .testimonial-text {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .author-name {
+  color: #f1f5f9;
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .author-location {
+  color: #94a3b8;
+}
+
+/* Make background animations transparent in dark mode */
+[data-theme="dark"] .background-animation,
+[data-theme="dark"] .floating-icons {
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Ensure education overlay is properly transparent in dark mode */
+[data-theme="dark"] .education-overlay {
+  background: transparent;
 }
